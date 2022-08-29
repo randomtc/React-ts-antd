@@ -1,5 +1,6 @@
 import { FC, useEffect } from 'react'
 import { Form, Input, Button, Select, DatePicker, Space } from 'antd'
+import './index.less'
 interface SearchFormProps {
     onFinish: (val: any) => void
     type: string

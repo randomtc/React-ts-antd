@@ -1,32 +1,25 @@
 import { FC, useState } from 'react'
 import { Space, Modal, Button, DatePicker, Form, Input } from 'antd'
-export const EditModal: FC = () => {
-    const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
+import './index.less'
+interface EditModalProps {
+    visible: boolean
+    onConfirm: (vals: any) => void
+    onCancel: () => void
+}
+export const EditModal: FC<EditModalProps> = (props) => {
+    const { visible, onConfirm, onCancel } = props
     const [form] = Form.useForm()
     const { RangePicker } = DatePicker
-
-    function confirmSub(vals: any) {
-        console.log(vals);
-
-    }
-
     return (
         <>
-            <div>
-                <Button
-                    onClick={() => setIsModalVisible(true)}
-                    type='primary'>
-                    新建
-                </Button>
-            </div>
-
-            <Modal onCancel={() => setIsModalVisible(false)}
+            <Modal
+                onCancel={() => onCancel()}
                 title="新增招生计划"
-                visible={isModalVisible}
+                visible={visible}
                 footer={null}
             >
                 <Form
-                    onFinish={vals => confirmSub(vals)}
+                    onFinish={vals => onConfirm(vals)}
                     form={form}
                     layout="horizontal"
                     labelCol={{ span: 6 }}
@@ -55,7 +48,7 @@ export const EditModal: FC = () => {
 
                     <div style={{ textAlign: 'right' }}>
                         <Space>
-                            <Button onClick={() => setIsModalVisible(false)}>
+                            <Button onClick={() => onCancel()}>
                                 取消
                             </Button>
                             <Button type="primary" htmlType="submit">

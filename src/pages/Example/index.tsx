@@ -1,16 +1,34 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { Button } from 'antd'
 import type { DataType } from './types'
 import CustomTable from '@/components/CustomTable'
-import columns from './components/columns'
+import columns from './columns'
 import SearchForm from './components/SearchForm'
-import {EditModal} from './components/Modal'
+import { EditModal } from './components/Modal'
 import './index.less'
 const Example: FC = () => {
     const location = useLocation()
-    function onSearch(vals: any) {
-        console.log(vals);
+    const [isAddModal, setIsAddModal] = useState<boolean>(false)//新增模态框
+
+    //查询
+    function onSearch(values: any) {
+
+        const { title, type, ...vals } = values
     }
+
+    //模态框提交
+    function modalSub(values: any) {
+
+        const { seletime, name, ...vals } = values
+    }
+
+    //添加表格
+    function addTag(a: DataType) {
+        console.log(a);
+    }
+
+    //表格数据
     const data: DataType[] = [];
     for (let i = 0; i < 10; i++) {
         data.push({
@@ -21,13 +39,16 @@ const Example: FC = () => {
             tags: ['cool', 'teacher'],
         });
     }
-    function addTag(a: DataType) {
-        console.log(a);
-    }
+
     return (
         <>
             <SearchForm onFinish={onSearch} type={location?.pathname} />
-            <EditModal/>
+            <Button
+                onClick={() => setIsAddModal(true)}
+                type='primary'
+            >
+                新建
+            </Button>
             <CustomTable
                 dataSource={data}
                 columns={columns({ addTag })}
@@ -37,7 +58,12 @@ const Example: FC = () => {
                         console.log(page, pageSize);
                     }
                 }}
-            />    
+            />
+            <EditModal
+                visible={isAddModal}
+                onConfirm={vals => modalSub(vals)}
+                onCancel={() => setIsAddModal(false)}
+            />
         </>
     )
 }
