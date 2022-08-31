@@ -8,6 +8,8 @@ const Login: FC = () => {
             <Link to='/example'>example</Link>
             <br />
             <Link to='/index'>index</Link>
+            <br />
+            <Link to='/usercenter'>layout</Link>
         </>
 
     )

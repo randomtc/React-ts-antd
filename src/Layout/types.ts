@@ -18,7 +18,8 @@ export function getItem(
 
 export type pathNameType = {
     [k: string]: {
-        name: string
+        label: string
         path?:string
+        key?:string
     }
 }
