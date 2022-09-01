@@ -5,9 +5,8 @@ const Login: FC = () => {
     const navigate = useNavigate()
     return (
         <>
+            <h1>Login</h1>
             <Link to='/example'>example</Link>
-            <br />
-            <Link to='/index'>index</Link>
             <br />
             <Link to='/usercenter'>layout</Link>
         </>

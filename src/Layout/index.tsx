@@ -1,51 +1,39 @@
 import { FC, useState } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { Breadcrumb, Layout, Menu } from 'antd'
-import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined, } from '@ant-design/icons'
-import { type MenuItem, type pathNameType, getItem } from './types'
+import { DesktopOutlined, FileOutlined, TeamOutlined } from '@ant-design/icons'
+import { type pathNameType, type operationType, items } from './types'
 import './index.less'
-
 const Layout_: FC = () => {
   const navigate = useNavigate()
   const [collapsed, setCollapsed] = useState(false)
   const { Header, Content, Footer, Sider } = Layout
+  //页面刷新侧边栏不重置 以及配合显示面包屑
   const [_, level1, level2, level3] = useLocation().pathname.split('/')
-
-  //面包屑信息
+  //导航栏信息
   const pathNameObj: pathNameType = {
-    usercenter: { label: '用户中心', key: 'usercenter' },
-    chr1: { label: '测试1', key: 'chr1', path: `usercenter/chr1` },
-    chr2: { label: '测试2', key: 'chr2', path: `usercenter/chr2` },
-    example: { label: '示例', key: 'example', path: `usercenter/example` },
-    /******/
-    usemanage: { label: '用户管理', key: 'usemanage' },
-    chr3: { label: '测试3', key: 'chr3', path: `usemanage/chr3` },
-    chr4: { label: '测试4', key: 'chr4', path: `usemanage/chr4` },
-    /******/
-    add: { label: '添加' },
-    edit: { label: '编辑' },
-    details: { label: '详情' }
+    usercenter: {
+      label: '用户中心',
+      children: {
+        chr1: { label: '测试1', path: `usercenter/chr1`, icon: <DesktopOutlined /> },
+        chr2: { label: '测试2', path: `usercenter/chr2`, icon: <FileOutlined />  },
+        example: { label: '示例', path: `usercenter/example`, icon: <TeamOutlined />  },
+      }
+    },
+    usemanage: {
+      label: '用户管理',
+      children: {
+        chr3: { label: '测试3', path: `usemanage/chr3` },
+        chr4: { label: '测试4', path: `usemanage/chr4` },
+      }
+    },
   }
- 
-  const items: MenuItem[] = [
-    getItem(label('usercenter'), key('usercenter'), <UserOutlined />, [
-      getItem(label('chr1'), key('chr1'), <DesktopOutlined />),
-      getItem(label('chr2'), key('chr2'), <PieChartOutlined />),
-      getItem(label('example'), key('example'), <PieChartOutlined />),
-    ]),
-    getItem(label('usemanage'), key('usemanage'), <FileOutlined />, [
-      getItem(label('chr3'), key('chr3'), <TeamOutlined />),
-      getItem(label('chr4'), key('chr4'), <DesktopOutlined />),
-    ]),
-  ]
+  const operation: operationType = {
+    add: '添加',
+    edit: '编辑',
+    details: '详情'
+  }
   
-  function key(k: string): string {
-    return Object.values(pathNameObj).filter(itm => itm.key === k)[0].key!
-  }
-  function label(k: string): string {
-    return Object.values(pathNameObj).filter(itm => itm.key === k)[0].label!
-  }
-
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider
@@ -55,21 +43,22 @@ const Layout_: FC = () => {
       >
         <div className="logo">演示系统</div>
         <Menu
-          onSelect={e => navigate(pathNameObj[e.key].path!)}
+          onSelect={e => navigate(pathNameObj[e.keyPath.at(-1)!].children![e.key].path!)}
           theme="dark"
           defaultOpenKeys={[level1]}
           defaultSelectedKeys={[level2]}
           mode="inline"
-          items={items} />
+          items={items(pathNameObj)}
+        />
       </Sider>
       <Layout className="site-layout">
         <Header className="site-layout-background" />
         <Content style={{ margin: '0 16px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>演示系统</Breadcrumb.Item>
-            <Breadcrumb.Item>{pathNameObj[level1]?.label}</Breadcrumb.Item>
-            <Breadcrumb.Item>{pathNameObj[level2]?.label}</Breadcrumb.Item>
-            <Breadcrumb.Item>{pathNameObj?.[level3]?.label}</Breadcrumb.Item>
+            <Breadcrumb.Item>{pathNameObj[level1].label}</Breadcrumb.Item>
+            <Breadcrumb.Item>{pathNameObj[level1].children![level2].label}</Breadcrumb.Item>
+            <Breadcrumb.Item>{operation[level3]}</Breadcrumb.Item>
           </Breadcrumb>
           <div className="site-layout-background" style={{ padding: 24, minHeight: '80vh' }}>
             <Outlet />
