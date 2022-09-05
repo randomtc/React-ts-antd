@@ -1,17 +1,13 @@
-import { FC, useEffect } from 'react'
 import { Form, Input, Button, Select, DatePicker, Space } from 'antd'
 import './index.less'
-interface SearchFormProps {
+interface Props {
     onFinish: (val: any) => void
-    type: string
+
 }
-const SearchForm: FC<SearchFormProps> = (props) => {
-    const { type, onFinish } = props
+const SearchForm = (props:Props) => {
+    const {  onFinish } = props
     const { RangePicker } = DatePicker
     const [form] = Form.useForm()
-    useEffect(() => {
-        console.log(type);
-    }, [])
 
     const formData: FormItemType[] = [
         { name: 'title', label: '题目', placeholder: '请输入关键字' },

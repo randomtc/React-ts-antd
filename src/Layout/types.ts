@@ -6,7 +6,6 @@ export function getItem(
     key: React.Key,
     icon?: React.ReactNode,
     children?: MenuItem[],
-
 ): MenuItem {
     return {
         key,
@@ -16,12 +15,11 @@ export function getItem(
     } as MenuItem
 }
 
-export type pathNameType = {
+export type menuType = {
     [k: string]: {
         label: string
-        path?: string
         icon?: React.ReactNode
-        children?: pathNameType
+        children?: menuType
     }
 }
 
@@ -29,18 +27,3 @@ export interface operationType {
     [k: string]: string
 }
 
-//侧边栏导航信息处理
-export function items(obj: pathNameType): MenuItem[] {
-    const item = []
-    for (const key in obj) {
-        item.push(
-            getItem(
-                obj[key].label,
-                key,
-                obj[key].icon ?? null,
-                obj[key].children ? items(obj[key].children!) : null!
-            )
-        )
-    }
-    return item
-}

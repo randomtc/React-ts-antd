@@ -1,4 +1,3 @@
-import { FC, useState } from 'react'
 import { Space, Modal, Button, DatePicker, Form, Input } from 'antd'
 import './index.less'
 interface EditModalProps {
@@ -6,7 +5,7 @@ interface EditModalProps {
     onConfirm: (vals: any) => void
     onCancel: () => void
 }
-export const EditModal: FC<EditModalProps> = (props) => {
+export const EditModal = (props: EditModalProps) => {
     const { visible, onConfirm, onCancel } = props
     const [form] = Form.useForm()
     const { RangePicker } = DatePicker

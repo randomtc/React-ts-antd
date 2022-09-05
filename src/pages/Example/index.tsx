@@ -8,23 +8,22 @@ import SearchForm from './components/SearchForm'
 import { EditModal } from './components/Modal'
 import './index.less'
 const Example: FC = () => {
-    const location = useLocation()
     const [isAddModal, setIsAddModal] = useState<boolean>(false)//新增模态框
     //查询
-    function onSearch(values: any) {
+    function onSearch(values: data) {
         const { title, type, ...vals } = values
     }
     //模态框提交
-    function modalSub(values: any) {
+    function modalSub(values: data) {
         const { seletime, name, ...vals } = values
     }
     //添加表格
-    function addTag(a: DataType) { 
+    function addTag(a: DataType) {
         console.log(a);
     }
     //表格数据
     const data: DataType[] = []
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 2; i++) {
         data.push({
             key: i,
             name: `Edrward ${i}`,
@@ -36,11 +35,11 @@ const Example: FC = () => {
 
     return (
         <>
-            <SearchForm onFinish={onSearch} type={location?.pathname} />
+            <SearchForm onFinish={onSearch} />
             <Button
                 onClick={() => setIsAddModal(true)}
                 type='primary'
-                style={{margin:'15px 0'}}
+                style={{ margin: '15px 0' }}
             >
                 新建
             </Button>

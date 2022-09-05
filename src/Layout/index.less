@@ -1,17 +1,34 @@
-.logo {
-    height: 100px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    font-weight: 800;
-
-}
-
-.site-layout {
-    .site-layout-background {
-        padding: 0;
-        background-color: white;
+#Layout{
+    min-height: 100vh;
+    .logo {
+        height: 100px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        font-weight: 800;
+    
+    }
+    
+    .site_layout {
+        .header {
+            padding: 0;
+            background-color: white;
+        }
+    
+        .content {
+            margin: 0 20px;
+    
+            .outlet {
+                padding: 24px;
+                min-height: 80vh;
+                background-color: white;
+            }
+        }
+        .footer{
+            text-align: center;
+        }
     }
 }
+
