@@ -1,10 +1,5 @@
 import { Space, Modal, Button, DatePicker, Form, Input } from 'antd'
-interface EditModalProps {
-    visible: boolean
-    onConfirm: (vals: any) => void
-    onCancel: () => void
-}
-export const EditModal = (props: EditModalProps) => {
+export const EditModal = (props: ModalProps) => {
     const { visible, onConfirm, onCancel } = props
     const [form] = Form.useForm()
     const { RangePicker } = DatePicker

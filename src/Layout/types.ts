@@ -23,7 +23,4 @@ export type menuType = {
     }
 }
 
-export interface operationType {
-    [k: string]: string
-}
 

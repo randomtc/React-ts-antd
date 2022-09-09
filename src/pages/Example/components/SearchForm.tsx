@@ -1,12 +1,8 @@
 import { Form, Input, Button, Select, DatePicker, Space } from 'antd'
-interface Props {
-    onFinish: (val: any) => void
-}
-export default function SearchForm(props: Props) {
+export default function SearchForm(props: SearcnFormProps) {
     const { onFinish } = props
     const { RangePicker } = DatePicker
     const [form] = Form.useForm()
-
     const formData: FormItemType[] = [
         { name: 'title', label: '题目', placeholder: '请输入关键字' },
         { name: 'come_from', label: '来源', placeholder: '请输入关键字' },
@@ -39,7 +35,7 @@ export default function SearchForm(props: Props) {
     }
     return (
         <Form
-            onFinish={vals => onFinish(vals)}
+            onFinish={vals => onFinish!(vals)}
             form={form}
             layout="inline"
         >

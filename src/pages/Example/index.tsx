@@ -8,16 +8,26 @@ import SearchForm from './components/SearchForm'
 import { EditModal } from './components/Modal'
 import './index.less'
 const Example: FC = () => {
-    const [bool, setBool] = useState<Record<string, boolean>>({
+    const [bool, setBool] = useState<IsBool>({
         isAddModal: false,//新增
+    })
+    const [subData, setSubdata] = useState<SubData>({
+        name: '',
+        age: 18,
+        isOpen: 0,
+        page: 1,
+        pageSize: 10,
     })
 
     //查询
-    function onSearch(values: data) {
+    function onSearch(values: Data) {
         const { title, type, ...vals } = values
+        setSubdata({ ...subData, ...vals, page: 1 })
     }
+
+
     //模态框提交
-    function modalSub(values: data) {
+    function modalSub(values: Data) {
         const { seletime, name, ...vals } = values
     }
     //添加表格

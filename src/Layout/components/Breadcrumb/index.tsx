@@ -1,14 +1,14 @@
 import { Breadcrumb } from 'antd'
-import type { operationType, menuType } from '../../types';
+import type { menuType } from '../../types';
 interface Props {
     menuData: menuType
-    location:string[]
+    location: string[]
 }
 const LayoutBreadCrumb = (props: Props) => {
-    const { menuData,location } = props
+    const { menuData, location } = props
     //页面刷新侧边栏不重置 以及配合显示面包屑
     const [_, level1, level2, level3] = location
-    const operation: operationType = {
+    const operation: Record<string, '添加' | '编辑' | '详情'> = {
         add: '添加',
         edit: '编辑',
         details: '详情'

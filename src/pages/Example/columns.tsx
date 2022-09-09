@@ -1,10 +1,10 @@
 import { Space, Tag } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import type { DataType } from './types'
-interface dataFun {
+interface FunType {
     addTag: (data: DataType) => void
 }
-const Columns = ({ addTag }: dataFun): ColumnsType<DataType> => [
+const Columns = ({ addTag }: FunType): ColumnsType<DataType> => [
     {
         title: '姓名', dataIndex: 'name',
         render: text => <a>{text}</a>,

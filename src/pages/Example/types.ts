@@ -4,6 +4,7 @@ export interface DataType {
     age: number
     address: string
     tags: string[]
+    [k: string]: any
 }
 
 
