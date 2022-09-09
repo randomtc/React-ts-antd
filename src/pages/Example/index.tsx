@@ -8,7 +8,10 @@ import SearchForm from './components/SearchForm'
 import { EditModal } from './components/Modal'
 import './index.less'
 const Example: FC = () => {
-    const [isAddModal, setIsAddModal] = useState<boolean>(false)//新增模态框
+    const [bool, setBool] = useState<Record<string, boolean>>({
+        isAddModal: false,//新增
+    })
+
     //查询
     function onSearch(values: data) {
         const { title, type, ...vals } = values
@@ -37,7 +40,7 @@ const Example: FC = () => {
         <>
             <SearchForm onFinish={onSearch} />
             <Button
-                onClick={() => setIsAddModal(true)}
+                onClick={() => setBool({ isAddModal: true })}
                 type='primary'
                 style={{ margin: '15px 0' }}
             >
@@ -54,9 +57,9 @@ const Example: FC = () => {
                 }}
             />
             <EditModal
-                visible={isAddModal}
+                visible={bool.isAddModal}
                 onConfirm={vals => modalSub(vals)}
-                onCancel={() => setIsAddModal(false)}
+                onCancel={() => setBool({ isAddModal: false })}
             />
         </>
     )

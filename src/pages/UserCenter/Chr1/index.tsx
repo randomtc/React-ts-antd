@@ -2,6 +2,10 @@ import { FC, useEffect, useId } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 const Chr1: FC = () => {
     const navigate = useNavigate()
+    useEffect(() => {
+        //数据赋值
+    }, [])
+
     return (
         <div>
             Chr1
@@ -10,7 +14,9 @@ const Chr1: FC = () => {
             <br />
             <Link to='edit' state={{ type: 'edit' }}>edit</Link>
             <br />
-            <button onClick={() => navigate('add', { state: { type: 'add' } })}>新增</button>
+            <button onClick={() => navigate('add', { state: { type: 'add' } })}>
+                新增
+            </button>
         </div>
     )
 }

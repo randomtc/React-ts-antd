@@ -4,7 +4,7 @@ import { Layout } from 'antd'
 import { DesktopOutlined, FileOutlined, TeamOutlined } from '@ant-design/icons'
 import { type menuType } from './types'
 import LayoutMenu from './components/Menu'
-import LayoutBreadCrumb from './components/Breadcrumb'
+import LayoutBreadcrumb from './components/Breadcrumb'
 import './index.less'
 const Layout_: FC = () => {
   const [collapsed, setCollapsed] = useState(false)
@@ -14,6 +14,7 @@ const Layout_: FC = () => {
   const menuData: menuType = {
     usercenter: {
       label: '用户中心',
+      icon: <DesktopOutlined />,
       children: {
         chr1: { label: '测试1', icon: <DesktopOutlined /> },
         chr2: { label: '测试2', icon: <FileOutlined /> },
@@ -29,7 +30,7 @@ const Layout_: FC = () => {
     },
   }
   return (
-    <Layout id='Layout' style={{ minHeight: '100vh' }}>
+    <Layout id='Layout'>
       <Sider collapsible collapsed={collapsed}     >
         <div className="logo">演示系统</div>
         <LayoutMenu menuData={menuData} location={locationData} />
@@ -37,7 +38,7 @@ const Layout_: FC = () => {
       <Layout className="site_layout">
         <Header className="header" />
         <Content className='content'>
-          <LayoutBreadCrumb menuData={menuData} location={locationData} />
+          <LayoutBreadcrumb menuData={menuData} location={locationData} />
           <div className='outlet'>
             <Outlet />
           </div>

@@ -1,11 +1,9 @@
 import { Form, Input, Button, Select, DatePicker, Space } from 'antd'
-import './index.less'
 interface Props {
     onFinish: (val: any) => void
-
 }
-const SearchForm = (props:Props) => {
-    const {  onFinish } = props
+export default function SearchForm(props: Props) {
+    const { onFinish } = props
     const { RangePicker } = DatePicker
     const [form] = Form.useForm()
 
@@ -67,4 +65,3 @@ const SearchForm = (props:Props) => {
         </Form>
     )
 }
-export default SearchForm

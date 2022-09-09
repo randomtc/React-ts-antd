@@ -1,5 +1,4 @@
 import { Space, Modal, Button, DatePicker, Form, Input } from 'antd'
-import './index.less'
 interface EditModalProps {
     visible: boolean
     onConfirm: (vals: any) => void

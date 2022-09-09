@@ -8,7 +8,7 @@ interface Props {
     onChange?: (page: number, pageSize: number) => void
   }
 }
-const CustomTable: FC<Props> = (props) => {
+export default function CustomTable(props: Props) {
   const {
     dataSource,
     columns,
@@ -36,5 +36,3 @@ const CustomTable: FC<Props> = (props) => {
     </>
   )
 }
-
-export default CustomTable

@@ -8,7 +8,7 @@ const Login: FC = () => {
             <h1>Login</h1>
             <Link to='/example'>example</Link>
             <br />
-            <Link to='/usercenter'>layout</Link>
+            <Link to='/usercenter'>index</Link>
         </>
 
     )
