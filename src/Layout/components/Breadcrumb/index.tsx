@@ -1,7 +1,7 @@
 import { Breadcrumb } from 'antd'
-import type { menuType } from '../../types';
+import type { MenuType } from '../../types';
 interface Props {
-    menuData: menuType
+    menuData: MenuType
     location: string[]
 }
 const LayoutBreadCrumb = (props: Props) => {

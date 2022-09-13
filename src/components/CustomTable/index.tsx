@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { Table, Pagination } from 'antd'
 interface Props {
   dataSource: any

@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Layout } from 'antd'
 import { DesktopOutlined, FileOutlined, TeamOutlined } from '@ant-design/icons'
-import { type menuType } from './types'
+import { type MenuType } from './types'
 import LayoutMenu from './components/Menu'
 import LayoutBreadcrumb from './components/Breadcrumb'
 import './index.less'
@@ -11,7 +11,7 @@ const Layout_: FC = () => {
   const { Header, Content, Footer, Sider } = Layout
   const locationData = useLocation().pathname.split('/')
   //导航栏信息
-  const menuData: menuType = {
+  const menuData: MenuType = {
     usercenter: {
       label: '用户中心',
       icon: <DesktopOutlined />,
@@ -31,7 +31,11 @@ const Layout_: FC = () => {
   }
   return (
     <Layout id='Layout'>
-      <Sider collapsible collapsed={collapsed}     >
+      <Sider
+        onCollapse={val => setCollapsed(val)}
+        collapsible
+        collapsed={collapsed}
+      >
         <div className="logo">演示系统</div>
         <LayoutMenu menuData={menuData} location={locationData} />
       </Sider>

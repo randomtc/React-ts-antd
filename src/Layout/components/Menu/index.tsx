@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import { Menu } from 'antd'
-import { type menuType, type MenuItem, getItem } from '../../types'
+import { type MenuType, type MenuItem, getItem } from '../../types'
 interface Props {
-    menuData: menuType
+    menuData: MenuType
     location: string[]
 }
 const LayoutMenu = (props: Props) => {
@@ -11,7 +11,7 @@ const LayoutMenu = (props: Props) => {
     const [_, level1, level2] = location
     
     //侧边栏导航信息处理
-    function items(obj: menuType): MenuItem[] {
+    function items(obj: MenuType): MenuItem[] {
         const item = []
         for (const key in obj) {
             item.push(

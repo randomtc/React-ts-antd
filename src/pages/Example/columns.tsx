@@ -1,35 +1,16 @@
-import { Space, Tag } from 'antd'
+import { Space } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
-import type { DataType } from './types'
+import type { TableData } from './types'
 interface FunType {
-    addTag: (data: DataType) => void
+    addTag: (data: TableData) => void
 }
-const Columns = ({ addTag }: FunType): ColumnsType<DataType> => [
-    {
-        title: '姓名', dataIndex: 'name',
+const columns = ({ addTag }: FunType): ColumnsType<TableData> => [
+    {    title: '姓名', dataIndex: 'name',
         render: text => <a>{text}</a>,
     },
-    { title: '年龄', dataIndex: 'age' },
-    { title: 'Address', dataIndex: 'address'},
-    {
-        title: 'Tags',
-        dataIndex: 'tags',
-        render: (_, { tags }) => (
-            <>
-                {tags.map(tag => {
-                    let color = tag.length > 5 ? 'geekblue' : 'green';
-                    if (tag === 'loser') {
-                        color = 'volcano';
-                    }
-                    return (
-                        <Tag color={color} key={tag}>
-                            {tag.toUpperCase()}
-                        </Tag>
-                    );
-                })}
-            </>
-        ),
-    },
+    { title: '电话', dataIndex: 'card_number' },
+    { title: '性别', dataIndex: 'is_arrive' },
+
     {
         title: 'Action',
         render: (data) => (
@@ -40,4 +21,4 @@ const Columns = ({ addTag }: FunType): ColumnsType<DataType> => [
         ),
     },
 ];
-export default Columns
+export default columns

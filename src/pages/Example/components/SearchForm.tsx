@@ -27,7 +27,7 @@ export default function SearchForm(props: SearcnFormProps) {
                     <Select.Option value={5}>案例分析题</Select.Option>
                 </Select>
             )
-            case '创建时间': return <RangePicker />
+            case '创建时间': return <RangePicker />        
         }
     }
     function sss(e: any) {

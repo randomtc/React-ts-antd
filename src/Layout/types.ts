@@ -15,11 +15,11 @@ export function getItem(
     } as MenuItem
 }
 
-export type menuType = {
+export type MenuType = {
     [k: string]: {
         label: string
         icon?: React.ReactNode
-        children?: menuType
+        children?: MenuType
     }
 }
 

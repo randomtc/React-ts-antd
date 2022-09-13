@@ -9,9 +9,8 @@ declare interface FormItemType {
 }
 
 declare type IsBool = Record<string | number | symbol, boolean>
-// type isBoolcopy = { [k: string | number | symbol]: boolean }等价于isBool
 
-declare type SubData = Record<string | number | symbol, unknown>
+declare type SrchObj = Record<string | number | symbol, unknown>
 
 declare interface SearcnFormProps { onFinish?: (val: any) => void }
 

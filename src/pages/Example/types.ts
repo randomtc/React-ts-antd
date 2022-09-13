@@ -1,9 +1,8 @@
-export interface DataType {
+export interface TableData {
     key: number
     name: string
-    age: number
-    address: string
-    tags: string[]
+    card_number: string
+    is_arrive: string
     [k: string]: any
 }
 
