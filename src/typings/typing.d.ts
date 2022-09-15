@@ -1,5 +1,3 @@
-type Data = { [k: string]: any }
-
 declare interface FormItemType {
     name: string
     label?: string
@@ -18,4 +16,24 @@ declare interface ModalProps {
     visible: boolean
     onConfirm: (vals: any) => void
     onCancel: () => void
+}
+
+
+//网络请求接口返回数据
+declare type Res<T> = {
+    code?: number
+    status?: number
+    message?: string
+    data: {
+        data: T[]
+        total: number
+        [k: string]: any
+    }
+    [k: string]: any
+}
+
+declare type ResData<T> = {
+    data: T[],
+    total?: number
+    [k: string]: any
 }

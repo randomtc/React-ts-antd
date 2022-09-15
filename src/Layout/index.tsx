@@ -39,7 +39,7 @@ const Layout_: FC = () => {
         <div className="logo">演示系统</div>
         <LayoutMenu menuData={menuData} location={locationData} />
       </Sider>
-      <Layout className="site_layout">
+      <Layout className="layout_side">
         <Header className="header" />
         <Content className='content'>
           <LayoutBreadcrumb menuData={menuData} location={locationData} />

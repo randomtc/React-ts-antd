@@ -9,7 +9,7 @@ const LayoutMenu = (props: Props) => {
     const navigate = useNavigate()
     const { menuData, location } = props
     const [_, level1, level2] = location
-    
+
     //侧边栏导航信息处理
     function items(obj: MenuType): MenuItem[] {
         const item = []

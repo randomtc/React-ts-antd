@@ -4,7 +4,7 @@ interface Props {
   columns: any
   scroll?: Record<string, number>
   pagination?: {
-    total: number
+    total: number|undefined
     onChange?: (page: number, pageSize: number) => void
   } | false | null
 }

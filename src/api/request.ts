@@ -14,7 +14,7 @@ http.interceptors.request.use(
     /*发请求前做的一些处理，数据转化，配置请求头，设置token,设置loading等，根据需求去添加*/
     //   const token = localStorage.getItem('operationToken')
     //   config.headers.Authorization = `Bearer ${token}`
-    config.url = "/proxy" + config.url
+    // config.url = "/proxy" + config.url
     return config
   },
   (error: any) => {
