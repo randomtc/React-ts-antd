@@ -6,6 +6,7 @@ import { type MenuType } from './types'
 import LayoutMenu from './components/Menu'
 import LayoutBreadcrumb from './components/Breadcrumb'
 import './index.less'
+import RouterBefore from '../router/routerBefore'
 const Layout_: FC = () => {
   const [collapsed, setCollapsed] = useState(false)
   const { Header, Content, Footer, Sider } = Layout
@@ -44,7 +45,9 @@ const Layout_: FC = () => {
         <Content className='content'>
           <LayoutBreadcrumb menuData={menuData} location={locationData} />
           <div className='outlet'>
-            <Outlet />
+            <RouterBefore>
+              <Outlet />
+            </RouterBefore>
           </div>
         </Content>
         <Footer className='footer'>

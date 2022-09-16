@@ -1,12 +1,11 @@
-import { FC, useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { FC, useEffect, useId, useState } from 'react'
 import { Button } from 'antd'
-import type { TableData } from './types'
-import CustomTable from '@/components/CustomTable'
-import columns from './columns'
 import SearchForm from './components/SearchForm'
+import CustomTable from '@/components/CustomTable'
 import { EditModal } from './components/Modal'
+import columns from './columns'
 import { getAdminList } from '@/api'
+import { type TableData } from './types'
 import './index.less'
 const Example: FC = () => {
     const [tableData, setTableData] = useState<ResData<TableData>>()
@@ -20,10 +19,12 @@ const Example: FC = () => {
         getAdminData()
     }, [])
 
+    //获取表格信息
     async function getAdminData() {
         const res: Res<TableData> = await getAdminList()
         if (res?.code === 0) setTableData(res?.data)
     }
+
     //查询
     function onSearch(values: Partial<TableData>) {
         const { name, ...vals } = values
@@ -34,6 +35,7 @@ const Example: FC = () => {
     function modalSub(values: any) {
         const { seletime, name, ...vals } = values
     }
+
     //添加表格
     function addTag(a: TableData) {
         console.log(a);
@@ -48,6 +50,7 @@ const Example: FC = () => {
             is_arrive: is_arrive ? '男' : '女',
         }
     })
+
 
     return (
         <>
@@ -70,7 +73,7 @@ const Example: FC = () => {
             <EditModal
                 visible={oBool.isAddModal}
                 onConfirm={modalSub}
-                onCancel={() => setBool({ isAddModal: false })}
+                onCancel={() => setBool({ ...oBool, isAddModal: false })}
             />
         </>
     )
