@@ -12,10 +12,10 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 )
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <ConfigProvider locale={zh_CN}>
       <App />
     </ConfigProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 )
 
