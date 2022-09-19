@@ -16,7 +16,6 @@ export default function RouterBefore({ children }: any) {
           return <>{children}</>
 
         } else {//鉴权失败
-          alert('鉴权失败')
           
           return
         }
