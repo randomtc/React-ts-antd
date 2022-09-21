@@ -24,7 +24,7 @@ export const routers: RouterType[] = [
     {
         element: <Layout />, children: [
             {
-                path: 'usercenter/', children: [
+                path: 'usercenter', children: [
                     { path: 'chr1', element: <Chr1 />, pover: true },
                     { path: 'chr1/add', element: <Chr1Operation /> },
                     { path: 'chr1/edit', element: <Chr1Operation /> },
@@ -33,7 +33,7 @@ export const routers: RouterType[] = [
                 ]
             },
             {
-                path: 'usemanage/', children: [
+                path: 'usemanage', children: [
                     { path: 'chr3', element: <Chr3 /> },
                     { path: 'chr4', element: <Chr4 /> },
                 ]
