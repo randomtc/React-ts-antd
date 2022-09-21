@@ -23,7 +23,7 @@ const LayoutMenu = (props: Props) => {
                 )
             )
         }
-        return item
+        return item as MenuItem[]
     }
     return (
         <Menu

@@ -1,4 +1,4 @@
-import { FC, useEffect, useId } from 'react'
+import { FC, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 const Chr1: FC = () => {
     const navigate = useNavigate()

@@ -1,9 +1,9 @@
-import { FC, useEffect, useId, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { Button } from 'antd'
 import SearchForm from './components/SearchForm'
 import CustomTable from '@/components/CustomTable'
-import { EditModal } from './components/Modal'
-import columns from './columns'
+import EditModal from './components/EditModal'
+import columns from './components/columns'
 import { getAdminList } from '@/api'
 import { type TableData } from './types'
 import './index.less'
@@ -32,7 +32,7 @@ const Example: FC = () => {
     }
 
     //模态框提交
-    function modalSub(values: any) {
+    function modalSub(values: TableData) {
         const { seletime, name, ...vals } = values
     }
 

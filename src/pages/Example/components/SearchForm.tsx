@@ -1,13 +1,13 @@
-import { Form, Input, Button, Select, DatePicker, Space } from 'antd'
-export default function SearchForm(props: SearcnFormProps) {
+import { Form, Input, Button, Select, Space } from 'antd'
+import { type TableData } from '../types'
+export default function SearchForm(props: FormProps<Partial<TableData>>) {
     const { onFinish } = props
-    const { RangePicker } = DatePicker
     const [form] = Form.useForm()
     const formData: FormItemType[] = [
         { name: 'name', label: '题目', placeholder: '请输入关键字' },
         { name: 'card_number', label: '来源', placeholder: '请输入关键字' },
         { name: 'is_arrive', label: '题型', placeholder: '请选择题型' },
-       
+
     ]
     function formContent(label: string, placeholder: string) {
         switch (label) {
@@ -26,7 +26,7 @@ export default function SearchForm(props: SearcnFormProps) {
                     <Select.Option value={4}>判断题</Select.Option>
                     <Select.Option value={5}>案例分析题</Select.Option>
                 </Select>
-            )    
+            )
         }
     }
     function sss(e: any) {

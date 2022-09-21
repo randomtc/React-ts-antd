@@ -1,6 +1,6 @@
 import { Space } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
-import type { TableData } from './types'
+import type { TableData } from '../types'
 interface FunType {
     addTag: (data: TableData) => void
 }

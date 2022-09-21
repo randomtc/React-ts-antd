@@ -10,7 +10,7 @@ declare type IsBool = Record<string | number | symbol, boolean>
 
 declare type SrchObj = Record<string | number | symbol, unknown>
 
-declare interface SearcnFormProps { onFinish?: (val: any) => void }
+declare interface FormProps<T> { onFinish?: (val: T) => void }
 
 declare interface ModalProps {
     visible: boolean
@@ -35,5 +35,11 @@ declare type Res<T> = {
 declare type ResData<T> = {
     data: T[],
     total?: number
+    [k: string]: any
+}
+
+declare interface Resolve {
+    code?: number
+    message?: string
     [k: string]: any
 }
