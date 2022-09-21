@@ -4,7 +4,6 @@ import './index.less'
 const Login: FC = () => {
     const navigate = useNavigate()
     const location = useLocation()
-    console.log(location);
     
     return (
         <>
@@ -12,6 +11,7 @@ const Login: FC = () => {
             <br />
             <Link to='/usercenter'>index</Link>
             <br />
+            <Link to='/usercenter/chr1'>index</Link>
         </>
 
     )

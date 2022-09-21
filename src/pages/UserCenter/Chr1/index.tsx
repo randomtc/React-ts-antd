@@ -1,5 +1,6 @@
 import { FC, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { DatePicker, Space } from 'antd';
 const Chr1: FC = () => {
     const navigate = useNavigate()
     useEffect(() => {
@@ -8,6 +9,7 @@ const Chr1: FC = () => {
 
     return (
         <div>
+             <DatePicker  />
             Chr1
             <br />
             <Link to='add' state={{ type: 'add' }}>add</Link>
