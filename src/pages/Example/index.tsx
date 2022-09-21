@@ -71,7 +71,7 @@ const Example: FC = () => {
                 }}
             />
             <EditModal
-                visible={oBool.isAddModal}
+                open={oBool.isAddModal}
                 onConfirm={modalSub}
                 onCancel={() => setBool({ ...oBool, isAddModal: false })}
             />

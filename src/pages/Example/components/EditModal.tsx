@@ -1,6 +1,6 @@
 import { Space, Modal, Button, DatePicker, Form, Input } from 'antd'
 export default function EditModal(props: ModalProps) {
-    const { visible, onConfirm, onCancel } = props
+    const { open, onConfirm, onCancel } = props
     const [form] = Form.useForm()
     const { RangePicker } = DatePicker
     function cancel() {
@@ -12,7 +12,7 @@ export default function EditModal(props: ModalProps) {
             <Modal
                 onCancel={cancel}
                 title="新增招生计划"
-                visible={visible}
+                open={open}
                 footer={null}
             >
                 <Form

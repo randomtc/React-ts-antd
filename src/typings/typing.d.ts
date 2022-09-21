@@ -13,7 +13,7 @@ declare type SrchObj = Record<string | number | symbol, unknown>
 declare interface FormProps<T> { onFinish?: (val: T) => void }
 
 declare interface ModalProps {
-    visible: boolean
+    open: boolean
     onConfirm: (vals: any) => void
     onCancel: () => void
 }
