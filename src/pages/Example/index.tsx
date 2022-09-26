@@ -5,25 +5,18 @@ import CustomTable from '@/components/CustomTable'
 import EditModal from './components/EditModal'
 import columns from './components/columns'
 import { getAdminList } from '@/api'
+import useGetData from '@/hook/useGetData'
 import { type TableData } from './types'
 import './index.less'
 const Example: FC = () => {
-    const [tableData, setTableData] = useState<ResData<TableData>>()
+
     const [oBool, setBool] = useState<IsBool>({
         isAddModal: false,//新增
         isOpen: false
     })
-    const [oSrch, setSrch] = useState<SrchObj>({ page: 1, pageSize: 10 })
+    const [oSrch, setSrch] = useState<SrchData>({ page: 1, pageSize: 10 })
+    const tableData = useGetData<TableData>(getAdminList, [oSrch])
 
-    useEffect(() => {
-        getAdminData()
-    }, [])
-
-    //获取表格信息
-    async function getAdminData() {
-        const res: Res<TableData> = await getAdminList()
-        if (res?.code === 0) setTableData(res?.data)
-    }
 
     //查询
     function onSearch(values: Partial<TableData>) {

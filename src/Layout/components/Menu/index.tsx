@@ -23,8 +23,9 @@ const LayoutMenu = (props: Props) => {
                 )
             )
         }
-        return item as MenuItem[]
+        return item
     }
+
     return (
         <Menu
             onSelect={e => navigate(e.keyPath.reverse().join('/'))}

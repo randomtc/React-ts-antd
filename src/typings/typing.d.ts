@@ -8,7 +8,7 @@ declare interface FormItemType {
 
 declare type IsBool = Record<string | number | symbol, boolean>
 
-declare type SrchObj = Record<string | number | symbol, unknown>
+declare type SrchData = Record<string | number | symbol, unknown>
 
 declare interface FormProps<T> { onFinish?: (val: T) => void }
 
