@@ -7,7 +7,7 @@ import columns from './components/columns'
 import { getAdminList } from '@/api'
 import useGetData from '@/hook/useGetData'
 import { type TableData } from './types'
-import './index.less'
+import './index.scss'
 const Example: FC = () => {
 
     const [oBool, setBool] = useState<IsBool>({
@@ -15,8 +15,7 @@ const Example: FC = () => {
         isOpen: false
     })
     const [oSrch, setSrch] = useState<SrchData>({ page: 1, pageSize: 10 })
-    const tableData = useGetData<TableData>(getAdminList, [oSrch])
-
+    const [tableData, loading] = useGetData<TableData>(getAdminList, [oSrch])
 
     //查询
     function onSearch(values: Partial<TableData>) {

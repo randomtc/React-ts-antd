@@ -1,13 +1,13 @@
-# 开发环境
+#### 开发环境
 xxxx
 
-# 测试环境
+#### 测试环境
 xxxx
 
-# 生产环境
+#### 生产环境
 xxxx
 
-# 文件资源目录 
+#### 文件资源目录 
 ├─ public                 # 静态资源文件（忽略打包）
 ├─ src
 │  ├─ api                 # API 接口管理
@@ -31,3 +31,7 @@ xxxx
 ├─ postcss.config.js      # postcss 配置
 ├─ README.md              # README 介绍
 └─ tsconfig.json          # typescript 全局配置
+
+
+### 使用sass预处理器
+npm install node-sass -save

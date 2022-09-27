@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { useNavigate, Outlet, Link,useLocation } from 'react-router-dom'
-import './index.less'
+import './index.scss'
 const Login: FC = () => {
     const navigate = useNavigate()
     const location = useLocation()

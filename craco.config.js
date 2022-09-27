@@ -17,21 +17,5 @@ module.exports = {
 
   },
 
-  //使用less
-  plugins: [
-    {
-      plugin: require('craco-less'),
-      options: {
-        lessLoaderOptions: {
-          lessOptions: {
-            javascriptEnabled: true,
-          },
-        },
-      },
-    },
-
-  ],
-
-
 
 };
