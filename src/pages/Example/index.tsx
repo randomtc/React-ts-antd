@@ -12,10 +12,11 @@ const Example: FC = () => {
 
     const [oBool, setBool] = useState<IsBool>({
         isAddModal: false,//新增
-        isOpen: false
+        isOpen: false,
+        isGetData: false,//请求数据开关
     })
     const [oSrch, setSrch] = useState<SrchData>({ page: 1, pageSize: 10 })
-    const [tableData, loading] = useGetData<TableData>(getAdminList, [oSrch])
+    const [tableData, loading] = useGetData<TableData>(getAdminList, oBool.isGetData, oSrch)
 
     //查询
     function onSearch(values: Partial<TableData>) {

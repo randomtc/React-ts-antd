@@ -7,7 +7,7 @@ import 'antd/dist/antd.less'  //antd样式引入
 import zhCN from 'antd/es/locale/zh_CN'//antd中文
 // import 'moment/locale/zh-cn'//antd日期中文
 import 'dayjs/locale/zh-cn'//antd日期中文
-import './mock' //引入mock
+import './test/mocks' //引入mock
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 )

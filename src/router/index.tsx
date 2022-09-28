@@ -1,7 +1,7 @@
 import { useRoutes, Navigate } from 'react-router-dom'
 import Login from '@/pages/Login'
 import Example from '@/pages/Example'
-import Layout from '@/Layout'
+import Layout from '@/components/Layout'
 import Chr1 from '@/pages/UserCenter/Chr1'
 import Chr1Operation from '@/pages/UserCenter/Chr1/operation';
 import Chr2 from '@/pages/UserCenter/Chr2'
