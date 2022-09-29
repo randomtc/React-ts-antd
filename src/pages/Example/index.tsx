@@ -16,7 +16,7 @@ const Example: FC = () => {
         isGetData: false,//请求数据开关
     })
     const [oSrch, setSrch] = useState<SrchData>({ page: 1, pageSize: 10 })
-    const [tableData, loading] = useGetData<TableData>(getAdminList, oBool.isGetData, oSrch)
+    const [tableData, loading] = useGetData<TableData>(getAdminList, oSrch, oBool.isGetData,)
 
     //查询
     function onSearch(values: Partial<TableData>) {
@@ -60,7 +60,12 @@ const Example: FC = () => {
                 columns={columns({ addTag })}
                 pagination={{
                     total: tableData?.total,
-                    onChange: (page, pageSize) => setSrch({ ...oSrch, page, pageSize })
+                    onChange: (page, pageSize) => {
+                        console.log({page});
+                        
+                        setSrch({ ...oSrch, page, pageSize })
+                    }
+                  
                 }}
             />
             <EditModal

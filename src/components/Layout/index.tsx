@@ -5,12 +5,14 @@ import { DesktopOutlined, FileOutlined, TeamOutlined } from '@ant-design/icons'
 import { type MenuType } from './types'
 import LayoutMenu from './components/Menu'
 import LayoutBreadcrumb from './components/Breadcrumb'
-import './index.less'
-import RouterBefore from '../router/routerBefore'
+import './index.scss'
+import RouterBefore from '@/router/routerBefore'
+
 const Layout_: FC = () => {
   const [collapsed, setCollapsed] = useState(false)
   const { Header, Content, Footer, Sider } = Layout
   const locationData = useLocation().pathname.split('/')
+
   //导航栏信息
   const menuData: MenuType = {
     usercenter: {

@@ -1,4 +1,4 @@
-import { Form, Input, Button, Select, Space } from 'antd'
+import { Form, Input, Button, Select, Space, Row, Col } from 'antd'
 import { type TableData } from '../types'
 export default function SearchForm(props: FormProps<Partial<TableData>>) {
     const { onFinish } = props
@@ -33,30 +33,78 @@ export default function SearchForm(props: FormProps<Partial<TableData>>) {
         console.log(e);
     }
     return (
+        // <Form
+        //     onFinish={vals => onFinish!(vals)}
+        //     form={form}
+        //     layout="inline"
+        // >
+        //     {formData.map((itm, idx) => (
+        //         <Form.Item
+        //             key={idx}
+        //             name={itm.name}
+        //             label={itm.label}
+        //         >
+        //             {formContent(itm.label!, itm.placeholder!)}
+        //         </Form.Item>
+        //     ))}
+        //     <Form.Item>
+        //         <Space>
+        //             <Button type="primary" htmlType="submit">
+        //                 查询
+        //             </Button>
+        //             <Button onClick={() => form.resetFields()}>
+        //                 清除
+        //             </Button>
+        //         </Space>
+        //     </Form.Item>
+        // </Form>
         <Form
             onFinish={vals => onFinish!(vals)}
             form={form}
-            layout="inline"
+            style={{ width: '60vw' }}
         >
-            {formData.map((itm, idx) => (
-                <Form.Item
-                    key={idx}
-                    name={itm.name}
-                    label={itm.label}
-                >
-                    {formContent(itm.label!, itm.placeholder!)}
-                </Form.Item>
-            ))}
-            <Form.Item>
-                <Space>
-                    <Button type="primary" htmlType="submit">
-                        查询
-                    </Button>
-                    <Button onClick={() => form.resetFields()}>
-                        清除
-                    </Button>
-                </Space>
-            </Form.Item>
+            <Row gutter={24}>
+                <Col span={8} >
+                    <Form.Item name="full_name" label="姓名">
+                        <Input placeholder='请输入关键字' />
+                    </Form.Item>
+                </Col>
+                <Col span={8} >
+                    <Form.Item name="period" label="培训期数">
+                        <Select onChange={e => sss(e)} placeholder={'请选择题型'}>
+                            <Select.Option value={1}>单选</Select.Option>
+                            <Select.Option value={2}>多选</Select.Option>
+                            <Select.Option value={3}>简答题</Select.Option>
+                            <Select.Option value={4}>判断题</Select.Option>
+                            <Select.Option value={5}>案例分析题</Select.Option>
+                        </Select>
+                    </Form.Item>
+                </Col>
+                <Col span={8} >
+                    <Form.Item name="status" label="申请状态">
+                        <Select placeholder='请选择状态'>
+                            <Select.Option value="1">待审核</Select.Option>
+                            <Select.Option value="2">审核通过</Select.Option>
+                            <Select.Option value="3">审核拒绝</Select.Option>
+                        </Select>
+                    </Form.Item>
+                </Col>
+            </Row>
+
+            <Row>
+                <Col span={24} style={{ textAlign: 'right' }}>
+                    <Space>
+                        <Button type="primary" htmlType="submit">
+                            查询
+                        </Button>
+                        <Button onClick={() => form.resetFields()}  >
+                            清除
+                        </Button>
+                    </Space>
+
+                </Col>
+            </Row>
+
         </Form>
     )
 }
