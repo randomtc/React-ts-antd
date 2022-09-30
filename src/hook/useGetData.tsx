@@ -1,4 +1,3 @@
-//如果想跳过isGetData参数将其设置为null
 import { useEffect, useState } from 'react'
 const useGetData = <T,>(
     getData: any,

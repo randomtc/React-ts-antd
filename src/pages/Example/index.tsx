@@ -9,14 +9,13 @@ import useGetData from '@/hook/useGetData'
 import { type TableData } from './types'
 import './index.scss'
 const Example: FC = () => {
-
     const [oBool, setBool] = useState<IsBool>({
         isAddModal: false,//新增
         isOpen: false,
         isGetData: false,//请求数据开关
     })
     const [oSrch, setSrch] = useState<SrchData>({ page: 1, pageSize: 10 })
-    const [tableData, loading] = useGetData<TableData>(getAdminList, oSrch, oBool.isGetData,)
+    const [tableData, loading] = useGetData<TableData>(getAdminList, oSrch, oBool.isGetData)
 
     //查询
     function onSearch(values: Partial<TableData>) {
@@ -60,12 +59,11 @@ const Example: FC = () => {
                 columns={columns({ addTag })}
                 pagination={{
                     total: tableData?.total,
+                    current: oSrch.page,
                     onChange: (page, pageSize) => {
                         console.log({page});
-                        
                         setSrch({ ...oSrch, page, pageSize })
                     }
-                  
                 }}
             />
             <EditModal

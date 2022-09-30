@@ -4,7 +4,8 @@ interface Props {
   columns: any
   scroll?: Record<string, number>
   pagination?: {
-    total: number|undefined
+    total: number | undefined
+    current: number //设置分页当前页码
     onChange?: (page: number, pageSize: number) => void
   } | false | null
 }
@@ -27,8 +28,9 @@ export default function CustomTable(props: Props) {
       />
       {pagination &&
         <Pagination
-          onChange={(page, pageSize) => pagination.onChange!(page, pageSize)}
           total={pagination.total}
+          current={pagination.current}
+          onChange={(page, pageSize) => pagination.onChange!(page, pageSize)}
           showSizeChanger={true}
           showQuickJumper={true}
           showTitle={true}
