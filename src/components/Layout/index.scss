@@ -19,12 +19,21 @@
         }
 
         .content {
-            margin: 0 20px;
+            margin: 0 16px;
+
 
             .outlet {
                 padding: 24px;
                 min-height: 80vh;
                 background-color: white;
+            }
+
+        }
+
+        /*>=1960的设备*/
+        @media (min-width: 1960px) {
+            .content {
+                margin: 0 24px;
             }
         }
 

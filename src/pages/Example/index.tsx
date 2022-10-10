@@ -16,7 +16,6 @@ const Example: FC = () => {
     })
     const [oSrch, setSrch] = useState<SrchData>({ page: 1, pageSize: 10 })
     const [tableData, loading] = useGetData<TableData>(getAdminList, oSrch, oBool.isGetData)
-
     //查询
     function onSearch(values: Partial<TableData>) {
         const { name, ...vals } = values
@@ -61,7 +60,7 @@ const Example: FC = () => {
                     total: tableData?.total,
                     current: oSrch.page,
                     onChange: (page, pageSize) => {
-                        console.log({page});
+                        console.log({ page });
                         setSrch({ ...oSrch, page, pageSize })
                     }
                 }}

@@ -14,8 +14,6 @@ module.exports = {
       //antd日期中文
       new AntdDayjsWebpackPlugin(),
     ],
-
   },
-
 
 };

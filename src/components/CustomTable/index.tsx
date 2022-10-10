@@ -5,7 +5,7 @@ interface Props {
   scroll?: Record<string, number>
   pagination?: {
     total: number | undefined
-    current: number //设置分页当前页码
+    current: number
     onChange?: (page: number, pageSize: number) => void
   } | false | null
 }
