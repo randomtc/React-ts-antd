@@ -33,7 +33,7 @@ const Example: FC = () => {
     }
 
     //表格数据
-    const data: TableData[] = tableData!?.data?.map(item => {
+    const data: TableData[] = tableData?.data?.map(item => {
         const { id, is_arrive, ...vals } = item
         return {
             ...vals,

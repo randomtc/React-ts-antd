@@ -31,7 +31,12 @@ const Layout_: FC = () => {
         chr4: { label: '测试4' },
       }
     },
+    useredit: {
+      label: '用户编辑',
+    },
   }
+
+  
 
   return (
     <Layout id='Layout'>

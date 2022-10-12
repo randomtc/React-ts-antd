@@ -13,11 +13,27 @@ const LayoutBreadCrumb = (props: Props) => {
         edit: '编辑',
         details: '详情'
     }
+    function renderBreadcrumb() {
+        if (location.length === 2) {
+            return (
+                <>
+                    <Breadcrumb.Item>{menuData[level1]?.label}</Breadcrumb.Item>
+                    <Breadcrumb.Item>{operation[level2]}</Breadcrumb.Item>
+                </>
+            )
+        } else if (location.length === 3) {
+            return (
+                <>
+                    <Breadcrumb.Item>{menuData[level1]?.label}</Breadcrumb.Item>
+                    <Breadcrumb.Item>{menuData[level1].children![level2]?.label}</Breadcrumb.Item>
+                    <Breadcrumb.Item>{operation[level3]}</Breadcrumb.Item>
+                </>
+            )
+        }
+    }
     return (
         <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>{menuData[level1]?.label}</Breadcrumb.Item>
-            <Breadcrumb.Item>{menuData[level1].children![level2]?.label}</Breadcrumb.Item>
-            <Breadcrumb.Item>{operation[level3]}</Breadcrumb.Item>
+            {renderBreadcrumb()}
         </Breadcrumb>
     )
 }

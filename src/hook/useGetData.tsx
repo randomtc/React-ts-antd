@@ -3,13 +3,12 @@ const useGetData = <T,>(
     getData: any,
     oSrchObj: SrchData | null = null,
     isGetData: boolean | null = null,
-   
 ) => {
     const [data, setData] = useState<ResData<T>>()
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         getList()
-    }, [isGetData, oSrchObj])
+    }, [oSrchObj, isGetData])
     async function getList() {
         try {
             setLoading(true)
