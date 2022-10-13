@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react'
 const useGetData = <T,>(
     getData: any,
-    oSrchObj: SrchData | null = null,
     isGetData: boolean | null = null,
 ) => {
     const [data, setData] = useState<ResData<T>>()
+    const [oSrch, setSrch] = useState<SrchData>({ page: 1, pageSize: 10 })
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         getList()
-    }, [oSrchObj, isGetData])
+    }, [oSrch, isGetData])
     async function getList() {
         try {
             setLoading(true)
-            const res: Res<T> = await getData(oSrchObj)
+            const res: Res<T> = await getData(oSrch)
             if (res?.code === 0) {
                 setData(res?.data)
                 setLoading(false)
@@ -24,6 +24,6 @@ const useGetData = <T,>(
             console.error(err)
         }
     }
-    return [data, loading] as [ResData<T>, boolean]
+    return [data, oSrch, setSrch, loading] as [ResData<T>, SrchData, any, boolean]
 }
 export default useGetData

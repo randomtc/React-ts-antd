@@ -14,8 +14,8 @@ const Example: FC = () => {
         isOpen: false,
         isGetData: false,//请求数据开关
     })
-    const [oSrch, setSrch] = useState<SrchData>({ page: 1, pageSize: 10 })
-    const [tableData, loading] = useGetData<TableData>(getAdminList, oSrch, oBool.isGetData)
+
+    const [tableData,oSrch, setSrch, loading] = useGetData<TableData>(getAdminList, oBool.isGetData)
     //查询
     function onSearch(values: Partial<TableData>) {
         const { name, ...vals } = values
