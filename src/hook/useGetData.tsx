@@ -1,29 +1,40 @@
+/*
+networkReq:封装好的网络请求
+addParame：需要添加的额外请求参数
+
+返回值
+parame:网络请求参数
+setParame：改变参数配合useEffect重新请求 (例如：搜索查询)
+data：成功后的数据
+isSendReq, setSendReq：是否重新请求的开关
+loading：请求过程的状态
+*/
 import { useEffect, useState } from 'react'
-const useGetData = <T,>(
-    getData: any,
-    isGetData: boolean | null = null,
-) => {
+const useGetData = <T,>(networkReq: any, addParame?: SrchData) => {
     const [data, setData] = useState<ResData<T>>()
-    const [oSrch, setSrch] = useState<SrchData>({ page: 1, pageSize: 10 })
-    const [loading, setLoading] = useState(false)
+    const [parame, setParame] = useState<SrchData>({ page: 1, pageSize: 10 })
+    const [isSendReq, setSendReq] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
     useEffect(() => {
-        getList()
-    }, [oSrch, isGetData])
-    async function getList() {
+        getData()
+    }, [parame, isSendReq])
+    async function getData() {
         try {
             setLoading(true)
-            const res: Res<T> = await getData(oSrch)
+            const res: Res<T> = await networkReq({ ...parame, ...addParame })
             if (res?.code === 0) {
                 setData(res?.data)
                 setLoading(false)
             } else {
                 //常见错误：例如约定的成功返回值code不为0
                 console.error(res)
+                setLoading(false)
             }
         } catch (err) {
             console.error(err)
+            setLoading(false)
         }
     }
-    return [data, oSrch, setSrch, loading] as [ResData<T>, SrchData, any, boolean]
+    return [parame, setParame, data, isSendReq, setSendReq, loading] as [SrchData, any, ResData<T>, boolean, any, boolean]
 }
 export default useGetData
