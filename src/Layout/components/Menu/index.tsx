@@ -39,6 +39,7 @@ const LayoutMenu = (props: Props) => {
             defaultSelectedKeys={[level2]}
             mode="inline"
             items={items(menuData)}
+            
         />
     )
 }

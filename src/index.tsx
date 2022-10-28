@@ -14,9 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   // <React.StrictMode>
   <ConfigProvider locale={zhCN}>
-        <div className='aaa'>aa</div>
     <App />
-
   </ConfigProvider>
   // </React.StrictMode>
 )

@@ -13,17 +13,15 @@ export default function RouterBefore({ children }: any) {
       if (lastItem.at(-1) === obj[k].path && obj[k].pover) {
         //需要鉴权
         if (a) {//鉴权成功
-          return <>{children}</>
-
+          return
         } else {//鉴权失败
-          
+          navigate('/nopermission')
           return
         }
       }
       obj[k].children && ComponentAuthentication(obj[k].children!)
     }
   }
-
   ComponentAuthentication(routers)
 
   const token = true

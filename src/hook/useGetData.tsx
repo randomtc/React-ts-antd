@@ -27,7 +27,7 @@ const useGetData = <T,>(networkReq: any, addParame?: SrchData) => {
                 setLoading(false)
             } else {
                 //常见错误：例如约定的成功返回值code不为0
-                console.error(res)
+                console.warn(res)
                 setLoading(false)
             }
         } catch (err) {

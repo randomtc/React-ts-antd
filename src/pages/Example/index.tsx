@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import { Button } from 'antd'
 import SearchForm from './components/SearchForm'
 import CustomTable from '@/components/CustomTable'
@@ -14,16 +14,19 @@ const Example: FC = () => {
         isOpen: false,
     })
 
-    const [oSrch, setSrch, tableData] = useGetData<TableData>(getAdminList)
+    const [oSrch, setSrch, tableData, isSendReq, setSendReq, loading] = useGetData<TableData>(getAdminList)
     //查询
     function onSearch(values: Partial<TableData>) {
         const { name, ...vals } = values
+        // 对参数的处理
         setSrch({ ...vals, page: 1, pageSize: oSrch.pageSize })
     }
 
     //模态框提交
     function modalSub(values: TableData) {
         const { seletime, name, ...vals } = values
+        // 对参数的处理
+
     }
 
     //添加表格
@@ -44,7 +47,10 @@ const Example: FC = () => {
 
     return (
         <>
+            {/* <div className='test'> */}
             <SearchForm onFinish={onSearch} />
+            {/* </div> */}
+
             <Button
                 onClick={() => setBool({ ...oBool, isAddModal: true })}
                 type='primary'
