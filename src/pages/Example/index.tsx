@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC,useEffect, useState } from 'react'
 import { Button } from 'antd'
 import SearchForm from './components/SearchForm'
 import CustomTable from '@/components/CustomTable'

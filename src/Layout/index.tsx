@@ -1,8 +1,6 @@
 import { FC, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Layout } from 'antd'
-import { DesktopOutlined, FileOutlined, TeamOutlined } from '@ant-design/icons'
-import { type MenuType } from './types'
 import LayoutMenu from './components/Menu'
 import LayoutBreadcrumb from './components/Breadcrumb'
 import './index.scss'
@@ -13,31 +11,6 @@ const Layout_: FC = () => {
   const { Header, Content, Footer, Sider } = Layout
   const locationData = useLocation().pathname.split('/')
 
-  //导航栏信息
-  const menuData: MenuType = {
-    usercenter: {
-      label: '用户中心',
-      icon: <DesktopOutlined />,
-      children: {
-        chr1: { label: '测试1', icon: <DesktopOutlined /> },
-        chr2: { label: '测试2', icon: <FileOutlined /> },
-        example: { label: '示例', icon: <TeamOutlined /> },
-      }
-    },
-    usemanage: {
-      label: '用户管理',
-      children: {
-        chr3: { label: '测试3' },
-        chr4: { label: '测试4' },
-      }
-    },
-    useredit: {
-      label: '用户编辑',
-    },
-  }
-
-  
-
   return (
     <Layout id='Layout'>
       <Sider
@@ -46,12 +19,12 @@ const Layout_: FC = () => {
         collapsed={collapsed}
       >
         <div className="logo">演示系统</div>
-        <LayoutMenu menuData={menuData} location={locationData} />
+        <LayoutMenu location={locationData} />
       </Sider>
       <Layout className="layout_side">
         <Header className="header" />
         <Content className='content'>
-          <LayoutBreadcrumb menuData={menuData} location={locationData} />
+          <LayoutBreadcrumb location={locationData} />
           <div className='outlet'>
             <RouterBefore>
               <Outlet />

@@ -1,36 +1,38 @@
 import { useNavigate } from 'react-router-dom'
 import { Menu } from 'antd'
-import { type MenuType, type MenuItem, getItem } from '../../types'
+import { getItem } from '../../types'
 import { useAliveController } from 'react-activation'
-interface Props {
-    menuData: MenuType
-    location: string[]
-}
-const LayoutMenu = (props: Props) => {
+import { routers } from '@/router'
+interface Props { location: string[] }
+const LayoutMenu = ({ location }: Props) => {
     const navigate = useNavigate()
-    const { menuData, location } = props
     const [_, level1, level2] = location
+    
     const { clear } = useAliveController()
     //侧边栏导航信息处理
-    function items(obj: MenuType): MenuItem[] {
-        const item = []
-        for (const key in obj) {
-            item.push(
+ 
+    function items(arr: any) {
+        const itemArr: any = []
+        arr.forEach((item: any) => {
+            item.label && itemArr.push(
                 getItem(
-                    obj[key].label,
-                    key,
-                    obj[key].icon ?? null,
-                    obj[key].children && items(obj[key].children!)
+                    item.label,
+                    item.path,
+                    item.icon ?? null,
+                    item.children && items(item.children)
                 )
             )
-        }
-        return item
+        })
+        return itemArr
     }
+    
 
     function onNavigate(e: any) {
         clear() //切换组件时清除所有的KeepLive缓存
         navigate(e.keyPath.reverse().join('/'))
     }
+    
+
     return (
         <Menu
             onSelect={e => onNavigate(e)}
@@ -38,8 +40,8 @@ const LayoutMenu = (props: Props) => {
             defaultOpenKeys={[level1]}
             defaultSelectedKeys={[level2]}
             mode="inline"
-            items={items(menuData)}
-            
+            items={items(routers[2].children)}
+
         />
     )
 }

@@ -1,4 +1,5 @@
 import { useRoutes, Navigate } from 'react-router-dom'
+import { DesktopOutlined, FileOutlined } from '@ant-design/icons'
 import KeepAlive, { AliveScope } from 'react-activation' //KeepAlive路由缓存
 import Layout from '@/Layout'
 import Login from '@/pages/Login'
@@ -18,30 +19,48 @@ export type RouterType = {
     children?: RouterType[]
     caseSensitive?: boolean
     pover?: boolean
+    label?: string
+    icon?: React.ReactNode,
 }
 
 export const routers: RouterType[] = [
     { path: '', element: <Navigate to='login' /> },
     { path: 'login', element: <Login /> },
     {
-        element: <AliveScope><Layout /></AliveScope>, children: [
+        element: <AliveScope><Layout /></AliveScope>,
+        children: [
             {
-                path: 'usercenter', children: [
-                    { path: 'chr1', element: <KeepAlive cacheKey="trainapply"><Chr1 /></KeepAlive> },
+                path: 'usercenter',
+                label: '用户中心',
+                icon: <DesktopOutlined />,
+                children: [
+                    {
+                        path: 'chr1',
+                        label: '测试1',
+                        icon: <DesktopOutlined />,
+                        element: <KeepAlive cacheKey="trainapply"><Chr1 /></KeepAlive>
+                    },
                     { path: 'chr1/add', element: <Chr1Operation /> },
                     { path: 'chr1/edit', element: <Chr1Operation /> },
-                    { path: 'chr2', element: <Chr2 />, pover: true },
-                    { path: 'example', element: <Example /> },
+                    {
+                        path: 'chr2',
+                        label: '测试2',
+                        icon: <FileOutlined />,
+                        element: <Chr2 />,
+                        pover: true
+                    },
+                    {
+                        path: 'example',
+                        label: '示例',
+                        element: <Example />
+                    },
                 ]
             },
             {
-                path: 'usemanage', children: [
-                    { path: 'chr3', element: <Chr3 /> },
-                    { path: 'chr4', element: <Chr4 /> },
-                ]
+                path: 'useredit',
+                label: '用户编辑',
+                element: <UserEdit />
             },
-
-            { path: 'useredit', element: <UserEdit /> },
 
             { path: 'nopermission', element: <NoPermission /> },
         ]
