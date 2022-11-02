@@ -7,10 +7,8 @@ interface Props { location: string[] }
 const LayoutMenu = ({ location }: Props) => {
     const navigate = useNavigate()
     const [_, level1, level2] = location
-
     const { clear } = useAliveController()
     //侧边栏导航信息处理
-
     function items(arr: RouterType[]) {
         const itemArr: MenuItem[] = []
         arr.forEach((item: RouterType) => {
@@ -25,14 +23,10 @@ const LayoutMenu = ({ location }: Props) => {
         })
         return itemArr
     }
-
-
     function onNavigate(e: any) {
         clear() //切换组件时清除所有的KeepLive缓存
         navigate(e.keyPath.reverse().join('/'))
     }
-
-
     return (
         <Menu
             onSelect={e => onNavigate(e)}

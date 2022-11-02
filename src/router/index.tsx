@@ -42,6 +42,7 @@ export const routers: RouterType[] = [
                     },
                     { path: 'chr1/add', element: <Chr1Operation /> },
                     { path: 'chr1/edit', element: <Chr1Operation /> },
+                    
                     {
                         path: 'chr2',
                         label: '测试2',
@@ -53,6 +54,19 @@ export const routers: RouterType[] = [
                         path: 'example',
                         label: '示例',
                         element: <Example />
+                    },
+                    {
+                        path: 'san',
+                        label: '三级',
+                        children: [
+                            {
+                                path: 'chr3',
+                                label: '测试3',
+                                icon: <DesktopOutlined />,
+                                element: <KeepAlive cacheKey="trainapply"><Chr3 /></KeepAlive>
+                            },
+                          
+                        ]
                     },
                 ]
             },
