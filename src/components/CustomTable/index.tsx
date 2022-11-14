@@ -3,6 +3,7 @@ interface Props {
   dataSource: any
   columns: any
   scroll?: Record<string, number>
+  loading?:boolean
   pagination?: {
     total: number | undefined
     current: number
@@ -12,6 +13,7 @@ interface Props {
 export default function CustomTable(props: Props) {
   const {
     dataSource,
+    loading,
     columns,
     scroll,
     pagination
@@ -24,6 +26,7 @@ export default function CustomTable(props: Props) {
         columns={columns}
         scroll={scroll ?? { x: 1200 }}
         pagination={false}
+        loading={loading}
         sticky
       />
       {pagination &&

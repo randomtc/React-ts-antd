@@ -1,9 +1,10 @@
+
 import { FC } from 'react'
-import { useNavigate, Outlet, Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './index.scss'
+
 const Login: FC = () => {
-    const navigate = useNavigate()
-    const location = useLocation()
+
 
     return (
         <>
