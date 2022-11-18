@@ -1,11 +1,11 @@
-import { FC,useEffect, useState } from 'react'
-import { Button } from 'antd'
+import { FC, useEffect, useState } from 'react'
+import { Button, message } from 'antd'
 import SearchForm from './components/SearchForm'
 import CustomTable from '@/components/CustomTable'
 import EditModal from './components/EditModal'
 import columns from './components/columns'
 import { getAdminList } from '@/api'
-import useGetData from '@/hook/useGetData'
+import useGetData from '@/hooks/useGetData'
 import { type TableData } from './types'
 import './index.scss'
 const Example: FC = () => {
@@ -33,6 +33,8 @@ const Example: FC = () => {
     function addTag(a: TableData) {
         console.log(a);
     }
+
+
 
     //表格数据
     const data: TableData[] = tableData?.data?.map(item => {

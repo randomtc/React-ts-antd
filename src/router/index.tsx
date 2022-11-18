@@ -73,7 +73,8 @@ export const routers: RouterType[] = [
             {
                 path: 'useredit',
                 label: '用户编辑',
-                element: <UserEdit />
+                element: <UserEdit />,
+
             },
 
             { path: 'nopermission', element: <NoPermission /> },
