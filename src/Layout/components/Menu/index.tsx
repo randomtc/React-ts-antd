@@ -6,7 +6,16 @@ import { type RouterType, routers } from '@/router'
 interface Props { location: string[] }
 const LayoutMenu = ({ location }: Props) => {
     const navigate = useNavigate()
-    const [_, level1, level2] = location
+
+    let level1 = '', level2 = ''
+    if (location.length === 3) {
+        level1 = location[1]
+        level2 = location[2]
+    } else {
+        level1 = location[0]
+        level2 = location[1]
+    }
+
     const { clear } = useAliveController()
     //侧边栏导航信息处理
     function items(arr: RouterType[]) {

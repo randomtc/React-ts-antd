@@ -15,7 +15,7 @@ const Chr2: FC = () => {
       </Form.Item>
 
 
-      <Form.Item name="seletime" label="时间" >
+      <Form.Item name="seletime2" label="时间" >
         <RangePicker
         // style={{width:'100%'}}
         />
