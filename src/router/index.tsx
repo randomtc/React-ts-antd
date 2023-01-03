@@ -62,7 +62,7 @@ export const routers: RouterType[] = [
             {
                 path: 'useredit',
                 label: '用户编辑',
-                component: lazy(() => import('@/pages/UserEdit'))
+                component: lazy(() => lazyFix(() => import('@/pages/UserEdit')))
             },
 
             // { path: 'nopermission', element: <NoPermission /> },
