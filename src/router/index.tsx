@@ -12,8 +12,6 @@ export type RouterType = {
     icon?: any,
     component?: React.LazyExoticComponent<any>
 }
-const component = (Child: React.LazyExoticComponent<any>) => <Child />
-
 export const routers: RouterType[] = [
     { path: '', element: <Navigate to='login' /> },
     { path: 'login', component: lazy(() => import('@/pages/Login')) },
@@ -71,13 +69,13 @@ export const routers: RouterType[] = [
 ]
 
 function dataDispose(arr: RouterType[]) {
-    const fncomponent = (Child: any) => <Child />
+    const setElement = (Child: React.LazyExoticComponent<any>) => <Child />
     const routerArr: any = []
     for (let i = 0; i < arr.length; i++) {
-        const { element, component, children, ...vals } = arr[i]
+        const { element, component, children, icon, label, ...vals } = arr[i]
         routerArr.push({
             ...vals,
-            element: element ? element : component && fncomponent(component),
+            element: element ? element : component && setElement(component),
             children: children && dataDispose(children)
         })
     }
