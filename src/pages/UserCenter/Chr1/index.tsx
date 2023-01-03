@@ -9,7 +9,7 @@ const Chr1: FC = () => {
 
     return (
         <div>
-             <DatePicker  />
+            <DatePicker />
             Chr1
             <br />
             <Link to='add' state={{ type: 'add' }}>add</Link>
@@ -22,5 +22,4 @@ const Chr1: FC = () => {
         </div>
     )
 }
-
 export default Chr1

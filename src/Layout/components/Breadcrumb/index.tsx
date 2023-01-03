@@ -8,6 +8,7 @@ const LayoutBreadCrumb = ({ location }: Props) => {
         details: '详情'
     }
     function getLabel(routerArr: RouterType[]) {
+        // eslint-disable-next-line array-callback-return
         routerArr?.map((item: RouterType) => {
             if (item.label) {
                 breadcrumbObj[item.path!] = item.label
