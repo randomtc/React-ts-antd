@@ -3,7 +3,7 @@ interface Props {
   dataSource: any
   columns: any
   scroll?: Record<string, number>
-  loading?:boolean
+  loading?: boolean
   pagination?: {
     total: number | undefined
     current: number
@@ -42,7 +42,6 @@ export default function CustomTable(props: Props) {
           pageSizeOptions={[10, 15, 20, 30]}
         />
       }
-
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { Form, Input, Button, Select, Space, Row, Col } from 'antd'
+import { Form, Input, Button, Select, Space, Row, Col, DatePicker } from 'antd'
 import { type TableData } from '../types'
 export default function SearchForm(props: FormProps<Partial<TableData>>) {
     const { onFinish } = props
@@ -12,11 +12,8 @@ export default function SearchForm(props: FormProps<Partial<TableData>>) {
     function formContent(label: string, placeholder: string) {
         switch (label) {
             case '题目': return <Input placeholder={placeholder} />
-            case '来源': return (
-                <Select placeholder={placeholder}>
-                    <Select.Option value={0}>政府端</Select.Option>
-                    <Select.Option value={1}>机构端</Select.Option>
-                </Select>
+            case '时间': return (
+                <DatePicker />
             )
             case '题型': return (
                 <Select onChange={e => sss(e)} placeholder={placeholder}>
@@ -81,12 +78,8 @@ export default function SearchForm(props: FormProps<Partial<TableData>>) {
                     </Form.Item>
                 </Col>
                 <Col span={8} >
-                    <Form.Item name="status" label="申请状态">
-                        <Select placeholder='请选择状态'>
-                            <Select.Option value="1">待审核</Select.Option>
-                            <Select.Option value="2">审核通过</Select.Option>
-                            <Select.Option value="3">审核拒绝</Select.Option>
-                        </Select>
+                    <Form.Item name="status" label="时间">
+                        <DatePicker />
                     </Form.Item>
                 </Col>
             </Row>

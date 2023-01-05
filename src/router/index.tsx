@@ -24,18 +24,18 @@ export const routers: RouterType[] = [
                 icon: 'icon-fdj',
                 children: [
                     {
-                        path: 'chr1',
-                        label: '测试1',
+                        path: 'form',
+                        label: 'Form表单',
                         icon: 'icon-fdj',
-                        component: lazy(() => lazyFix(() => import('@/pages/UserCenter/Chr1')))
+                        component: lazy(() => lazyFix(() => import('@/pages/UserCenter/Form')))
                     },
                     {
                         path: 'chr1/add',
-                        component: lazy(() => lazyFix(() => import('@/pages/UserCenter/Chr1/operation')))
+                        component: lazy(() => lazyFix(() => import('@/pages/UserCenter/Form/operation')))
                     },
                     {
                         path: 'chr1/edit',
-                        component: lazy(() => lazyFix(() => import('@/pages/UserCenter/Chr1/operation')))
+                        component: lazy(() => lazyFix(() => import('@/pages/UserCenter/Form/operation')))
                     },
                     {
                         path: 'example',
@@ -70,7 +70,7 @@ export const routers: RouterType[] = [
 
 function dataDispose(arr: RouterType[]) {
     const setElement = (Child: React.LazyExoticComponent<any>) => <Child />
-    const routerArr: any = []
+    const routerArr: RouterType[] = []
     for (let i = 0; i < arr.length; i++) {
         const { element, component, children, icon, label, ...vals } = arr[i]
         routerArr.push({
