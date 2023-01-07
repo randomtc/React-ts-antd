@@ -1,6 +1,7 @@
 import { FC, useEffect } from 'react'
+import { CloseCircleOutlined, PlusOutlined } from "@ant-design/icons"
 import { Link, useNavigate } from 'react-router-dom'
-import { Form, Input, Button, message, InputNumber, DatePicker } from 'antd'
+import { Form, Input, Button, message, InputNumber, DatePicker, Space, TimePicker } from 'antd'
 import { phoneVerify, idCardVerify } from '@/utils/verify'
 const Index: FC = () => {
     const navigate = useNavigate()
@@ -23,8 +24,7 @@ const Index: FC = () => {
     return (
         <Form
             form={form}
-            labelCol={{ span: 2 }}
-            wrapperCol={{ span: 7 }}
+            style={{ width: "30vw" }}
         >
 
             <Form.Item
@@ -64,7 +64,42 @@ const Index: FC = () => {
                 <DatePicker />
             </Form.Item>
 
-
+            <Form.List name="mealtime">
+                {(fields, { add, remove }) => (
+                    <>
+                        {fields.map(({ key, name, ...restField }) => (
+                            <Space key={key} style={{ display: "flex" }} align="baseline">
+                                <Form.Item
+                                    label="用餐时间"
+                                    {...restField}
+                                    name={[name, "name"]}
+                                    rules={[{ required: true, message: "请输入" }]}
+                                >
+                                    <Input placeholder="名称" />
+                                </Form.Item>
+                                <Form.Item
+                                    {...restField}
+                                    name={[name, "time"]}
+                                    rules={[{ required: true, message: "请选择" }]}
+                                >
+                                    <TimePicker.RangePicker format={"HH:mm"} />
+                                </Form.Item>
+                                <CloseCircleOutlined onClick={() => remove(name)} />
+                            </Space>
+                        ))}
+                        <Form.Item label="  " colon={false}>
+                            <Button
+                                type="dashed"
+                                onClick={() => add()}
+                                block
+                                icon={<PlusOutlined />}
+                            >
+                                添加用餐时间
+                            </Button>
+                        </Form.Item>
+                    </>
+                )}
+            </Form.List>
 
 
             <Button type="primary" htmlType="submit" onClick={onFinish}>
