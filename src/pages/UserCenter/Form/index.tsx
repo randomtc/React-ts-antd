@@ -3,6 +3,7 @@ import { CloseCircleOutlined, PlusOutlined } from "@ant-design/icons"
 import { Link, useNavigate } from 'react-router-dom'
 import { Form, Input, Button, message, InputNumber, DatePicker, Space, TimePicker } from 'antd'
 import { phoneVerify, idCardVerify } from '@/utils/verify'
+import retainDecimal from "@/utils/retainDecimal"
 const Index: FC = () => {
     const navigate = useNavigate()
     const [form] = Form.useForm()
@@ -49,13 +50,25 @@ const Index: FC = () => {
 
             {/* parser设置数字输入框只能为整数 */}
             <Form.Item
-                label="年龄"
+                label="保留整数"
                 name="age"
                 rules={[{ required: true, message: "请输入年龄!" }]}
             >
                 <InputNumber
                     min={1}
                     parser={(val: any) => (val.indexOf(".") > -1 ? parseInt(val) : val)}
+                    placeholder="请输入"
+                />
+            </Form.Item>
+
+            <Form.Item
+                label="保留两位小数"
+                name="age"
+                rules={[{ required: true, message: "请输入年龄!" }]}
+            >
+                <InputNumber
+                    min={1}
+                    parser={(val: any) => retainDecimal(val, 2)}
                     placeholder="请输入"
                 />
             </Form.Item>
