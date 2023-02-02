@@ -1,6 +1,8 @@
 import { Breadcrumb } from 'antd'
 import { type RouterType, routers } from '@/router'
-interface Props { location: string[] }
+interface Props {
+    location: string[]
+}
 const LayoutBreadCrumb = ({ location }: Props) => {
     const breadcrumbObj: Record<string, string> = {
         add: '添加',
@@ -20,7 +22,9 @@ const LayoutBreadCrumb = ({ location }: Props) => {
 
     return (
         <Breadcrumb style={{ margin: '16px 0' }}>
-            {location.map((item: string) => <Breadcrumb.Item key={item}>{breadcrumbObj?.[item]}</Breadcrumb.Item>)}
+            {location.map((item: string) => (
+                <Breadcrumb.Item key={item}>{breadcrumbObj?.[item]}</Breadcrumb.Item>
+            ))}
         </Breadcrumb>
     )
 }

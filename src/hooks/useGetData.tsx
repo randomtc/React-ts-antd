@@ -10,19 +10,21 @@ isSendReq, setSendReq：是否重新请求的开关
 loading：请求过程的状态
 */
 import { useEffect, useState } from 'react'
-const useGetData = <T,>(networkReq: any , addParame?: SrchData) => {
+const useGetData = <T,>(networkReq: any, addParams?: SrchData) => {
     const [data, setData] = useState<ResData<T>>()
-    const [parame, setParame] = useState<SrchData>({ page: 1, pageSize: 10 })
+    const [params, setParams] = useState<SrchData>({ page: 1, page_size: 10 })
     const [isSendReq, setSendReq] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
     useEffect(() => {
         getData()
-    }, [parame, isSendReq])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [params, isSendReq])
+
     async function getData() {
         try {
             setLoading(true)
-            const res: Res<T> = await networkReq({ ...parame, ...addParame })
-            if (res?.code === 0) {
+            const res: Res<T> = await networkReq({ ...params, ...addParams })
+            if (res?.code === 200) {
                 setData(res?.data)
                 setLoading(false)
             } else {
@@ -35,6 +37,14 @@ const useGetData = <T,>(networkReq: any , addParame?: SrchData) => {
             setLoading(false)
         }
     }
-    return [parame, setParame, data, isSendReq, setSendReq, loading] as [SrchData, any, ResData<T>, boolean, any, boolean]
+
+    return [params, setParams, data, isSendReq, setSendReq, loading] as [
+        SrchData,
+        any,
+        ResData<T>,
+        boolean,
+        any,
+        boolean
+    ]
 }
 export default useGetData

@@ -1,6 +1,8 @@
-import React, { lazy, Suspense } from "react"
+import React, { lazy, Suspense } from 'react'
 import { useRoutes, Navigate } from 'react-router-dom'
-import { lazyFix } from "./fixLazyLoad"
+import { lazyFix } from './fixLazyLoad'
+import { Spin } from 'antd'
+import './index.less'
 export type RouterType = {
     path?: string
     index?: boolean
@@ -9,63 +11,72 @@ export type RouterType = {
     caseSensitive?: boolean
     pover?: boolean
     label?: string
-    icon?: any,
+    icon?: any
     component?: React.LazyExoticComponent<any>
 }
 export const routers: RouterType[] = [
-    { path: '', element: <Navigate to='login' /> },
+    { path: '', element: <Navigate to="login" /> },
     { path: 'login', component: lazy(() => import('@/pages/Login')) },
     {
         component: lazy(() => import('@/Layout')),
         children: [
             {
-                path: 'usercenter',
-                label: '用户中心',
-                icon: 'icon-fdj',
-                children: [
-                    {
-                        path: 'form',
-                        label: 'Form表单',
-                        icon: 'icon-fdj',
-                        component: lazy(() => lazyFix(() => import('@/pages/UserCenter/Form')))
-                    },
-                    {
-                        path: 'chr1/add',
-                        component: lazy(() => lazyFix(() => import('@/pages/UserCenter/Form/operation')))
-                    },
-                    {
-                        path: 'chr1/edit',
-                        component: lazy(() => lazyFix(() => import('@/pages/UserCenter/Form/operation')))
-                    },
-                    {
-                        path: 'example',
-                        label: '示例',
-                        component: lazy(() => lazyFix(() => import('@/pages/Example')))
-                    },
-                    {
-                        path: 'san',
-                        label: '三级',
-                        children: [
-                            {
-                                path: 'chr3',
-                                label: '测试3',
-                                icon: 'icon-fdj',
-                                component: lazy(() => lazyFix(() => import('@/pages/Login')))
-                            },
-
-                        ]
-                    },
-                ]
+                path: 'staffmanage',
+                label: '员工管理',
+                icon: 'icon-staffmanage',
+                component: lazy(() => lazyFix(() => import('@/pages/StaffManage')))
             },
             {
-                path: 'useredit',
-                label: '用户编辑',
-                component: lazy(() => lazyFix(() => import('@/pages/UserEdit')))
+                path: 'oldmanmanage',
+                label: '老人管理',
+                icon: 'icon-oldmanmanage',
+                component: lazy(() => lazyFix(() => import('@/pages/OldManManage')))
             },
-
-            // { path: 'nopermission', element: <NoPermission /> },
+            {
+                path: 'devicemanage',
+                label: '设备管理',
+                icon: 'icon-devicemanage',
+                children: [
+                    {
+                        path: 'devicealert',
+                        label: '设备报警',
+                        icon: 'icon-devicealert',
+                        component: lazy(() =>
+                            lazyFix(() => import('@/pages/DeviceManage/DeviceAlert'))
+                        )
+                    },
+                    {
+                        path: 'devicebind',
+                        label: '设备绑定',
+                        icon: 'icon-devicebind',
+                        component: lazy(() =>
+                            lazyFix(() => import('@/pages/DeviceManage/DecicveBind'))
+                        )
+                    },
+                    {
+                        path: 'devicegrant',
+                        label: '设备发放',
+                        icon: 'icon-devicegrant',
+                        component: lazy(() =>
+                            lazyFix(() => import('@/pages/DeviceManage/DeviceGrant'))
+                        )
+                    }
+                ]
+            }
         ]
     },
+    {
+        path: '/401',
+        component: lazy(() => import('@/components/401'))
+    },
+    {
+        path: '/404',
+        component: lazy(() => import('@/components/404'))
+    },
+    {
+        path: '*',
+        component: lazy(() => import('@/components/404'))
+    }
 ]
 
 function dataDispose(arr: RouterType[]) {
@@ -83,7 +94,13 @@ function dataDispose(arr: RouterType[]) {
 }
 export default function AppRouter() {
     return (
-        <Suspense fallback={<>loading</>}>
+        <Suspense
+            fallback={
+                <div id="firstPage">
+                    <Spin tip="页面加载中..." size="large" />
+                </div>
+            }
+        >
             {useRoutes(dataDispose(routers))}
         </Suspense>
     )

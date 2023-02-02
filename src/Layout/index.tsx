@@ -1,42 +1,39 @@
 import { FC, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Layout } from 'antd'
-import LayoutMenu from './components/Menu'
-import LayoutBreadcrumb from './components/Breadcrumb'
-import './index.scss'
+import LayoutMenu from './Menu'
+import LayoutHeader from './Header'
+import LayoutBreadcrumb from './Breadcrumb'
+import './index.less'
 import RouterBefore from '@/router/routerBefore'
 
 const Layout_: FC = () => {
-  const [collapsed, setCollapsed] = useState(false)
-  const { Header, Content, Footer, Sider } = Layout
-  const locationData = useLocation().pathname.split('/')
+    const [collapsed, setCollapsed] = useState(false)
+    const { Header, Content, Sider } = Layout
+    const locationData = useLocation().pathname.split('/')
 
-  return (
-    <Layout id='Layout'>
-      <Sider
-        onCollapse={val => setCollapsed(val)}
-        collapsible
-        collapsed={collapsed}
-      >
-        <div className="logo">演示系统</div>
-        <LayoutMenu location={locationData} />
-      </Sider>
-      <Layout className="layout_side">
-        <Header className="header" />
-        <Content className='content'>
-          <LayoutBreadcrumb location={locationData} />
-          <div className='outlet'>
-            <RouterBefore>
-              <Outlet />
-            </RouterBefore>
-          </div>
-        </Content>
-        <Footer className='footer'>
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
-      </Layout>
-    </Layout>
-  )
+    return (
+        <Layout id="Layout">
+            <Sider onCollapse={val => setCollapsed(val)} collapsible collapsed={collapsed}>
+                <div className="logo">居家养老系统</div>
+                <LayoutMenu location={locationData} />
+            </Sider>
+            <Layout className="layout_side">
+                <Header className="header">
+                    <LayoutHeader />
+                </Header>
+                <Content className="content">
+                    <LayoutBreadcrumb location={locationData} />
+                    <div className="outlet">
+                        <RouterBefore>
+                            <Outlet />
+                        </RouterBefore>
+                    </div>
+                </Content>
+                {/* <Footer className="footer">Ant Design ©2018 Created by Ant UED</Footer> */}
+            </Layout>
+        </Layout>
+    )
 }
 
 export default Layout_
