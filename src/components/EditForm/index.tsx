@@ -21,6 +21,8 @@ interface IItemArray {
     rules?: any
     placeholder?: string
     tooltip?: string
+    format?: string
+    content?: React.ReactNode
 }
 
 interface IOption {
@@ -39,7 +41,13 @@ export default function EditFormComponent(props: Iprops) {
             case 'Upload':
                 return <Upload {...item.config} />
             case 'InputNumber':
-                return <InputNumber placeholder={item.placeholder} {...item.config} />
+                return (
+                    <InputNumber
+                        style={{ width: '100%' }}
+                        placeholder={item.placeholder}
+                        {...item.config}
+                    />
+                )
             case 'Select':
                 return (
                     <Select {...item.config} placeholder={item.placeholder}>
@@ -58,13 +66,15 @@ export default function EditFormComponent(props: Iprops) {
             case 'DatePicker':
                 return (
                     <DatePicker
+                        style={{ width: '100%' }}
                         placeholder={item.placeholder}
-                        format="YYYY-MM-DD HH:mm:ss"
                         {...item.config}
                     />
                 )
             case 'RangePicker':
                 return <RangePicker format="YYYY-MM-DD HH:mm:ss" {...item.config} />
+            case 'Custom':
+                return item?.content
             default:
                 return <Input placeholder={item.placeholder} {...item.config}></Input>
         }
@@ -74,12 +84,13 @@ export default function EditFormComponent(props: Iprops) {
         <div className="form_edit_wrap">
             <Form
                 form={props.form}
-                onFinish={props.onFinish}
                 labelAlign="right"
-                labelCol={props.isNotModal ? { span: 4 } : { sm: 24, md: 24, lg: 6, xl: 6, xxl: 6 }}
+                // labelCol={{ span: 7 }}
+                // wrapperCol={{ span: 7 }}
+                labelCol={props.isNotModal ? { span: 2 } : { sm: 24, md: 24, lg: 6, xl: 6, xxl: 6 }}
                 wrapperCol={
                     props.isNotModal
-                        ? { span: 14 }
+                        ? { span: 7 }
                         : props.layout === 'vertical'
                         ? { sm: 24, md: 24, lg: 24, xl: 24, xxl: 24 }
                         : { sm: 24, md: 24, lg: 14, xl: 14, xxl: 14 }

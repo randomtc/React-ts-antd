@@ -4,6 +4,7 @@ interface Props {
     columns: any
     scroll?: Record<string, number>
     loading?: boolean
+    rowSelection?: any
     pagination?: {
         total: number | undefined
         current: number
@@ -11,7 +12,7 @@ interface Props {
     }
 }
 export default function CustomTable(props: Props) {
-    const { dataSource, loading, columns, scroll, pagination } = props
+    const { dataSource, loading, columns, scroll, rowSelection, pagination } = props
     return (
         <>
             <Table
@@ -21,6 +22,7 @@ export default function CustomTable(props: Props) {
                 pagination={false}
                 loading={loading}
                 sticky
+                rowSelection={rowSelection}
             />
             {pagination && (
                 <Pagination

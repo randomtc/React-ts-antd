@@ -8,13 +8,12 @@ import './index.less'
 import RouterBefore from '@/router/routerBefore'
 
 const Layout_: FC = () => {
-    const [collapsed, setCollapsed] = useState(false)
     const { Header, Content, Sider } = Layout
     const locationData = useLocation().pathname.split('/')
 
     return (
         <Layout id="Layout">
-            <Sider onCollapse={val => setCollapsed(val)} collapsible collapsed={collapsed}>
+            <Sider breakpoint="lg" collapsedWidth="0">
                 <div className="logo">居家养老系统</div>
                 <LayoutMenu location={locationData} />
             </Sider>
