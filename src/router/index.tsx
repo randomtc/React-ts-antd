@@ -80,7 +80,17 @@ export const routers: RouterType[] = [
 ]
 
 function dataDispose(arr: RouterType[]) {
-    const setElement = (Child: React.LazyExoticComponent<any>) => <Child />
+    const setElement = (Child: React.LazyExoticComponent<any>) => (
+        <Suspense
+            fallback={
+                <div id="firstPage">
+                    <Spin tip="页面加载中..." size="large" />
+                </div>
+            }
+        >
+            <Child />
+        </Suspense>
+    )
     const routerArr: RouterType[] = []
     for (let i = 0; i < arr.length; i++) {
         const { element, component, children, icon, label, ...vals } = arr[i]
@@ -93,15 +103,5 @@ function dataDispose(arr: RouterType[]) {
     return routerArr
 }
 export default function AppRouter() {
-    return (
-        <Suspense
-            fallback={
-                <div id="firstPage">
-                    <Spin tip="页面加载中..." size="large" />
-                </div>
-            }
-        >
-            {useRoutes(dataDispose(routers))}
-        </Suspense>
-    )
+    return useRoutes(dataDispose(routers))
 }
