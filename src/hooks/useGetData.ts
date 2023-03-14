@@ -10,7 +10,7 @@ isSendReq, setSendReq：是否重新请求的开关
 loading：请求过程的状态
 */
 import { useEffect, useState } from 'react'
-const useGetData = <T,>(networkReq: any, addParams?: SrchData) => {
+const useGetData = <T,>(networkReq: any, addParams?: Record<string, any>) => {
     const [data, setData] = useState<ResData<T>>()
     const [params, setParams] = useState<SrchData>({ page: 1, page_size: 10 })
     const [isSendReq, setSendReq] = useState<boolean>(false)
