@@ -1,6 +1,5 @@
 import { Form, Input, DatePicker, InputNumber, Switch, Select } from 'antd'
 import Upload from '@/components/Upload'
-import './index.less'
 const { RangePicker } = DatePicker
 const { Option } = Select
 interface Iprops {
@@ -9,6 +8,8 @@ interface Iprops {
     layout?: 'inline' | 'horizontal' | 'vertical'
     isNotModal?: boolean //是否用于modal中 在modal中自动居中 在整个页面靠左 见于会员列表modal以及会员新增
     onFinish?: (...set: any) => void
+    labelCol?: Record<string, number>
+    wrapperCol?: Record<string, number>
 }
 interface IItemArray {
     name?: string
@@ -28,6 +29,7 @@ interface IItemArray {
 interface IOption {
     label: string
     value: string | number
+    disabled?: boolean
 }
 
 export default function EditFormComponent(props: Iprops) {
@@ -54,7 +56,11 @@ export default function EditFormComponent(props: Iprops) {
                         {item.option &&
                             item.option.map(mini => {
                                 return (
-                                    <Option value={mini.value} key={mini.value}>
+                                    <Option
+                                        value={mini.value}
+                                        key={mini.value}
+                                        disabled={mini?.disabled}
+                                    >
                                         {mini.label}
                                     </Option>
                                 )
@@ -76,7 +82,7 @@ export default function EditFormComponent(props: Iprops) {
             case 'Custom':
                 return item?.content
             default:
-                return <Input placeholder={item.placeholder} {...item.config}></Input>
+                return <Input placeholder={item.placeholder} {...item.config} />
         }
     }
     // sm={24} md={24} lg={12} xl={8} xxl={6}
@@ -85,11 +91,17 @@ export default function EditFormComponent(props: Iprops) {
             <Form
                 form={props.form}
                 labelAlign="right"
-                // labelCol={{ span: 7 }}
-                // wrapperCol={{ span: 7 }}
-                labelCol={props.isNotModal ? { span: 2 } : { sm: 24, md: 24, lg: 6, xl: 6, xxl: 6 }}
+                labelCol={
+                    props.labelCol
+                        ? props.labelCol
+                        : props.isNotModal
+                        ? { span: 2 }
+                        : { sm: 24, md: 24, lg: 6, xl: 6, xxl: 6 }
+                }
                 wrapperCol={
-                    props.isNotModal
+                    props.wrapperCol
+                        ? props.wrapperCol
+                        : props.isNotModal
                         ? { span: 7 }
                         : props.layout === 'vertical'
                         ? { sm: 24, md: 24, lg: 24, xl: 24, xxl: 24 }
