@@ -3,7 +3,7 @@
 * @param  networkRequest   网络请求
 * @param  addParams        添加参数
 * 返回参数
-* @renterParam
+* @returnParams
 * @param  parame           请求参数
 * @param  setParame        设置参数
 * @param  data             请求成功数据
