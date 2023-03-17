@@ -1,13 +1,14 @@
-/*
-networkReq:封装好的网络请求
-addParame：需要添加的额外请求参数
-
-返回值
-parame:网络请求参数
-setParame：改变参数配合useEffect重新请求 (例如：搜索查询)
-data：成功后的数据
-isSendReq, setSendReq：是否重新请求的开关
-loading：请求过程的状态
+/**
+* 函数参数
+* @param  networkRequest   网络请求
+* @param  addParams        添加参数
+* 返回参数
+* @renterParam
+* @param  parame           请求参数
+* @param  setParame        设置参数
+* @param  data             请求成功数据
+* @param  trigger          重新请求的开关
+* @param  loading          请求状态
 */
 import { useEffect, useState } from 'react'
 
