@@ -10,41 +10,47 @@ isSendReq, setSendReq：是否重新请求的开关
 loading：请求过程的状态
 */
 import { useEffect, useState } from 'react'
-const useGetData = <T,>(networkReq: any, addParams?: Record<string, any>) => {
-    const [data, setData] = useState<ResData<T>>()
-    const [params, setParams] = useState<SrchData>({ page: 1, page_size: 10 })
-    const [isSendReq, setSendReq] = useState<boolean>(false)
-    const [loading, setLoading] = useState<boolean>(false)
-    useEffect(() => {
-        getData()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [params, isSendReq])
 
-    async function getData() {
+type ResData<T> = {
+    data: T[]
+    total?: number
+    [k: string]: any
+}
+
+type Res<T> = {
+    code: number
+    data: ResData<T>
+    message?: string
+    [k: string]: any
+}
+
+const useGetData = <T>(networkRequest: any, addParams?: Record<string, any>) => {
+    const [data, setData] = useState<ResData<T>>()
+    const [params, setParams] = useState<Record<string, any>>({ page: 1, page_size: 10 })
+    const [trigger, setTrigger] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
+
+    useEffect(() => {
+        sendRequest()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [params, trigger])
+
+    async function sendRequest() {
+        setLoading(true)
         try {
-            setLoading(true)
-            const res: Res<T> = await networkReq({ ...params, ...addParams })
+            const res: Res<T> = await networkRequest({ ...params, ...addParams })
             if (res?.code === 200) {
                 setData(res?.data)
-                setLoading(false)
             } else {
-                //常见错误：例如约定的成功返回值code不为0
-                console.warn(res)
-                setLoading(false)
+                console.error(res)
             }
         } catch (err) {
             console.error(err)
-            setLoading(false)
         }
+        setLoading(false)
     }
 
-    return [params, setParams, data, isSendReq, setSendReq, loading] as [
-        SrchData,
-        any,
-        ResData<T>,
-        boolean,
-        any,
-        boolean
-    ]
+    return { params, setParams, data, trigger, setTrigger, loading }
 }
+
 export default useGetData
