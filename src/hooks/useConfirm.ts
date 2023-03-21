@@ -33,10 +33,15 @@ const useConfirm = () => {
             }
         } catch (err) {
             console.error(err)
+        } finally {
+            setConfirm({ params: {} })
+            setLoading(false)
         }
-        setConfirm({ params: {} })
-        setLoading(false)
+
     }
+
+
+
     return [setConfirm, loading] as [(...set: any) => void, boolean]
 }
 

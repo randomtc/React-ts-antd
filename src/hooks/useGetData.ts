@@ -47,8 +47,10 @@ const useGetData = <T>(networkRequest: any, addParams?: Record<string, any>) => 
             }
         } catch (err) {
             console.error(err)
+        } finally {
+            setLoading(false)
         }
-        setLoading(false)
+
     }
 
     return { params, setParams, data, trigger, setTrigger, loading }
