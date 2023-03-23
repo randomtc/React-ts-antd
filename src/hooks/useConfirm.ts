@@ -37,7 +37,6 @@ const useConfirm = () => {
             setConfirm({ params: {} })
             setLoading(false)
         }
-
     }
 
 
