@@ -5,6 +5,7 @@ declare interface FormItemType {
     message?: string
     placeholder?: string
 }
+declare type Item = Record<string | number | symbol, any>
 
 declare type IsBool = Record<string | number | symbol, boolean>
 

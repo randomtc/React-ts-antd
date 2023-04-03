@@ -26,7 +26,11 @@ const Chr2: FC = () => {
         />
       </Form.Item>
 
-
+      <Form.Item name="seletime" label="时间" >
+        <DatePicker
+        // style={{width:'100%'}}
+        />
+      </Form.Item>
 
 
 

@@ -38,9 +38,6 @@ const useConfirm = () => {
             setLoading(false)
         }
     }
-
-
-
     return [setConfirm, loading] as [(...set: any) => void, boolean]
 }
 

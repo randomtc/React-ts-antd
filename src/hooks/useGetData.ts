@@ -50,7 +50,6 @@ const useGetData = <T>(networkRequest: any, addParams?: Record<string, any>) => 
         } finally {
             setLoading(false)
         }
-
     }
 
     return { params, setParams, data, trigger, setTrigger, loading }
