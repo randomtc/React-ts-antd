@@ -28,3 +28,4 @@ export const getUserInfo = (data: any): Promise<any> =>
 // menu
 export const getMenuInfo = (data: any): Promise<any> =>
   getRequest("/api/family-bed/user/getAppInfo", data)
+
