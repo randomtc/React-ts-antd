@@ -42,7 +42,7 @@ http.interceptors.response.use(
     // return Promise.resolve(error.response)
   }
 
-);
+)
 
 export const get = (url: string = '', data = {}, timeout: number = 5000) => {
   if (qs.stringify(data)) {

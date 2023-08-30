@@ -5,10 +5,11 @@ declare interface FormItemType {
     message?: string
     placeholder?: string
 }
+declare type Item = Record<string | number | symbol, any>
 
 declare type IsBool = Record<string | number | symbol, boolean>
 
-declare type SrchObj = Record<string | number | symbol, unknown>
+declare type SrchData = Record<string | number | symbol, any>
 
 declare interface FormProps<T> { onFinish?: (val: T) => void }
 
@@ -17,7 +18,6 @@ declare interface ModalProps {
     onConfirm: (vals: any) => void
     onCancel: () => void
 }
-
 
 //网络请求接口返回数据
 declare type Res<T> = {
@@ -33,7 +33,7 @@ declare type Res<T> = {
 }
 
 declare type ResData<T> = {
-    data: T[],
+    data: T[]
     total?: number
     [k: string]: any
 }

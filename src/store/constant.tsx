@@ -1,0 +1,5 @@
+export const TOKEN_CHANGE = "token_change"
+export const USER_INFO = "user_info"
+export const USER_ORGID = "user_orgid"
+export const SELECT_ORGID = "select_user_orgid"
+export const MENULIST = "menu_list"

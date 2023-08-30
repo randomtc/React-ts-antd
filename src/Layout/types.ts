@@ -18,6 +18,7 @@ export function getItem(
 export type MenuType = {
     [k: string]: {
         label: string
+        path:string
         icon?: React.ReactNode
         children?: MenuType
     }
